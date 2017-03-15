@@ -129,7 +129,9 @@ Two params :
 
 ## Version
 
-0.1.0 - Project in development...
+1.0.1 - Project in development...
+
+1.0.0 - Start of the project ! 🎉🎊
 
 <br>
  
