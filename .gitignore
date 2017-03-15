@@ -1,0 +1,8 @@
+# Managed by Composer #
+#######################
+/vendor/
+/composer.lock
+
+# Idea files #
+##############
+/.idea/

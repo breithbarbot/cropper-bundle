@@ -1,0 +1,5 @@
+breithbarbot_cropper_crop:
+    path:     /crop
+    defaults: { _controller: BreithbarbotCropperBundle:Cropper:crop }
+    options:
+        expose: true

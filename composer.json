@@ -1,0 +1,33 @@
+{
+  "name": "breithbarbot/cropper",
+  "type": "symfony-bundle",
+  "description": "Simple cropping tool for symfony 3",
+  "keywords": ["crop", "cropping", "image", "avatar", "upload", "symfony-bundle", "form-types"],
+  "homepage": "https://github.com/breithbarbot/Cropper",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Breith Barbot",
+      "email": "b.breith@gmail.com",
+      "homepage": "https://breithbarbot.name"
+    }
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "symfony/config": "^3.0",
+    "symfony/dependency-injection": "^3.0",
+    "symfony/form": "^3.0",
+    "symfony/http-kernel": "^3.0",
+    "symfony/http-foundation": "^3.0",
+    "twig/twig": "~1.28|~2.0"
+  },
+  "autoload": {
+    "psr-4": { "Breithbarbot\\CropperBundle\\": "" }
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0.x-dev"
+    }
+  }
+}

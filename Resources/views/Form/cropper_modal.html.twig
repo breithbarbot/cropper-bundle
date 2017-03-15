@@ -1,0 +1,60 @@
+{% block cropper_stylesheets %}
+    <link href="{{ asset('bundles/breithbarbotcropper/css/cropper.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/breithbarbotcropper/css/main.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block cropper_modals %}
+    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form class="avatar-form form-inline" action="{{ path('breithbarbot_cropper_crop') }}" enctype="multipart/form-data" method="post">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" id="avatar-modal-label">Outil de cropping</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="avatar-body">
+                            <!-- Upload image and data -->
+                            <div class="avatar-upload">
+                                <input type="hidden" class="avatar-src" name="avatar_src">
+                                <input type="hidden" class="avatar-data" name="avatar_data">
+
+                                <div class="form-group">
+                                    <label for="avatarInput">Selectionner une image</label>
+                                    <input type="file" class="avatar-input form-control" id="avatarInput" name="avatar_file" accept="image/x-png,image/gif,image/jpeg">
+                                </div>
+
+                                <input type="hidden" name="filename" value="">
+                                <input type="hidden" name="path" value="{{ path_image }}">
+                                <input type="hidden" name="width" value="{{ width }}">
+                                <input type="hidden" name="height" value="{{ height }}">
+                            </div>
+
+                            <!-- Crop and preview -->
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div class="avatar-wrapper"></div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="avatar-preview" style="height: auto !important;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block cropper_javascripts %}
+    <script src="{{ asset('bundles/breithbarbotcropper/js/cropper.min.js') }}"></script>
+    <script src="{{ asset('bundles/breithbarbotcropper/js/main.js') }}"></script>
+    <script>
+        $('#avatar-modal').on({'hidden.bs.modal': destroyCropper});
+    </script>
+{% endblock %}

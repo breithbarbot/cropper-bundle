@@ -1,0 +1,8 @@
+{% block breithbarbot_cropper_bundle_cropper_type_widget %}
+    {% spaceless %}
+        <div class="avatar-view" title="Outil de cropping">
+            <img class="img-responsive img-thumbnail" src="{% if form.vars.value is not null %}{{ asset(form.vars.value.path) }}{% else %}{{ asset('bundles/breithbarbotcropper/img/empty.png') }}{% endif %}" alt="Avatar">
+        </div>
+        {{ form_rest(form) }}
+    {% endspaceless %}
+{% endblock %}

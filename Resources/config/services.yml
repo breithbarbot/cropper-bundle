@@ -1,0 +1,6 @@
+services:
+    breithbarbot.cropper.cropper_type:
+        class: Breithbarbot\CropperBundle\Form\Type\CropperType
+        tags:
+            - { name: form.type, alias: cropper }
+        arguments: ['%breithbarbot_cropper.data_class%']
