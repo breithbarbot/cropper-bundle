@@ -118,11 +118,11 @@ Parameter :
 Add the call function for init plugin JS
 ```js
 // Crooper JS
-new Crop($('#crop'), "16/9");
+new Crop($('#crop'), 16/9);
 ```
 Two params :
 1. The form ID
-2. Ratio of cropped image
+2. Aspect ratio of cropped image
 
 
 <br>
