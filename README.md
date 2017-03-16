@@ -3,7 +3,10 @@
 
 Bundle based on the javascript plugin [Cropper](https://github.com/fengyuanchen/cropper) adapted for use under symfony 3
 
-[![Total Downloads](https://poser.pugx.org/breithbarbot/cropper/downloads?format=flat-square)](https://packagist.org/packages/breithbarbot/cropper) [![License](https://poser.pugx.org/breithbarbot/cropper/license?format=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
+[![Latest Stable Version](https://poser.pugx.org/breithbarbot/cropper/v/stable?format=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
+[![Total Downloads](https://poser.pugx.org/breithbarbot/cropper/downloads?format=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
+[![Latest Unstable Version](https://poser.pugx.org/breithbarbot/cropper/v/unstable?format=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
+[![License](https://poser.pugx.org/breithbarbot/cropper/license?format=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
 
 <br>
 
