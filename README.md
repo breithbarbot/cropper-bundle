@@ -76,6 +76,7 @@ breithbarbot_cropper:
 2. Add form field
 3. Add modal
 4. Add script
+5. Add Association Mapping
 
 <br>
 
@@ -127,8 +128,27 @@ Two params :
 1. The form ID
 2. Aspect ratio of cropped image
 
+<br>
+
+#### Step 5: Add Association Mapping
+Add your Association Mapping with your File entity
+```php
+// ...
+
+/**
+ * @ORM\OneToOne(targetEntity="YourBundle\Entity\File", cascade={"persist"}, orphanRemoval=true)
+ * @ORM\JoinColumn(referencedColumnName="id")
+ */
+private $visuel;
+
+// ...
+```
+Then, run the following commands :
+* ```php bin/console doctrine:generate:entities --entity=YourBundle:File```
+* ```php bin/console doctrine:schema:update --force```
 
 <br>
+
 
 ## Version
 
