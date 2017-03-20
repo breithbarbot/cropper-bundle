@@ -77,6 +77,7 @@ breithbarbot_cropper:
 3. Add modal
 4. Add script
 5. Add Association Mapping
+6. Remove association if delete
 
 <br>
 
@@ -146,6 +147,20 @@ private $visuel;
 Then, run the following commands :
 * ```php bin/console doctrine:generate:entities --entity=YourBundle:File```
 * ```php bin/console doctrine:schema:update --force```
+
+<br>
+
+#### Step 6: Remove association if delete
+Add script before the ```php $em->persist($entity); ``` in your **controler**
+
+Replace `->setImage(null)` by __your_field_name__
+```php
+// If delete field = true
+$formImageDelete = $form['your_field_name']['delete']->getData();
+if (isset($formImageDelete) && !empty($formImageDelete)) {
+    $entity->setImage(null);
+}
+```
 
 <br>
 
