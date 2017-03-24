@@ -6,7 +6,6 @@ Bundle based on the javascript plugin [Cropper](https://github.com/fengyuanchen/
 [![Latest Stable Version](https://poser.pugx.org/breithbarbot/cropper/v/stable?format=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
 [![Total Downloads](https://poser.pugx.org/breithbarbot/cropper/downloads?format=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
 [![Latest Unstable Version](https://poser.pugx.org/breithbarbot/cropper/v/unstable?format=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
-[![License](https://poser.pugx.org/breithbarbot/cropper/license?format=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
 
 <br>
 
@@ -185,24 +184,4 @@ if (isset($formImageDelete) && !empty($formImageDelete)) {
  
 ## License
 
-MIT License
-
-Copyright (c) 2017 Breith Barbot | [Breithbarbot.name](https://breithbarbot.name)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+[![License](https://poser.pugx.org/breithbarbot/cropper/license?format=flat-square)](https://github.com/breithbarbot/Cropper/blob/master/LICENSE)
