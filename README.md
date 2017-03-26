@@ -12,8 +12,10 @@ Bundle based on the javascript plugin [Cropper](https://github.com/fengyuanchen/
 ## Installation
 1. Download Cropper Bundle
 2. Enable the bundle
-3. Configure the BreithbarbotCropperBundle
-4. Import BreithbarbotCropperBundle routing files
+3. Install the assets
+4. Configure the BreithbarbotCropperBundle
+5. Import BreithbarbotCropperBundle routing files
+6. Clear caches
 
 <br>
 
@@ -40,7 +42,16 @@ public function registerBundles()
 
 <br>
 
-#### Step 3: Configure the BreithbarbotCropperBundle
+
+#### Step 3: Install the assets
+Used to install multimedia files in the web/ folder
+```bash
+php bin/console assets:install --symlink
+```
+
+<br>
+
+#### Step 4: Configure the BreithbarbotCropperBundle
 Configure the bundle in the config.yml:
 ```yaml
 # BreithbarbotCropperBundle Configuration
@@ -59,7 +70,7 @@ Option `data_class` refers to your Entity `File` with at least the following fie
 
 <br>
 
-#### Step 4: Import BreithbarbotCropperBundle routing files
+#### Step 5: Import BreithbarbotCropperBundle routing files
 Import the routing:
 ```yaml
 # BreithbarbotCropperBundle
@@ -70,13 +81,22 @@ breithbarbot_cropper:
 
 <br>
 
+#### Step 6: Clear caches
+Clear dev and prod caches
+```bash
+php bin/console cache:clear
+php bin/console cache:clear --env=prod --no-debug
+```
+
+<br>
+
 ## Usage Instructions
 1. Add form field in form builder
 2. Add form field
 3. Add modal
 4. Add script
 5. Add Association Mapping
-6. Remove association if delete
+6. Remove association if delete image
 
 <br>
 
@@ -92,7 +112,7 @@ use Breithbarbot\CropperBundle\Form\Type\CropperType;
 
 $builder
     // ...
-    ->add('your_field_name', CropperType::class)
+    ->add('your_field_name', CropperType::class, ['data' => $builder->getData()->getImage(), 'required' => false]) // [...]->getImage() replace by your field name! 
     // ...
 ;
 ```
@@ -125,7 +145,7 @@ Add the call function for init plugin JS
 new Crop($('#crop'), 16/9);
 ```
 Two params :
-1. The form ID
+1. The form ID  -->  `<form id="crop" ... >`
 2. Aspect ratio of cropped image
 
 <br>
@@ -139,25 +159,26 @@ Add your Association Mapping with your File entity
  * @ORM\OneToOne(targetEntity="YourBundle\Entity\File", cascade={"persist"}, orphanRemoval=true)
  * @ORM\JoinColumn(referencedColumnName="id")
  */
-private $visuel;
+private $yourFieldName;
 
 // ...
 ```
 Then, run the following commands :
-* ```php bin/console doctrine:generate:entities --entity=YourBundle:File```
+* ```php bin/console doctrine:generate:entities YourBundle:YourEntity```
 * ```php bin/console doctrine:schema:update --force```
 
 <br>
 
-#### Step 6: Remove association if delete
+#### Step 6: Remove association if delete image OR is empty
 Add script before the ```php $em->persist($entity); ``` in your **controler**
 
-Replace `->setImage(null)` by __your_field_name__
 ```php
-// If delete field = true
-$formImageDelete = $form['your_field_name']['delete']->getData();
-if (isset($formImageDelete) && !empty($formImageDelete)) {
-    $entity->setImage(null);
+// If delete field is true
+// OR
+// is field is empty
+$fai = $form_article['yourFieldName'];
+if ((isset($fai['delete']) && !empty($fai['delete']->getData())) || empty($fai['path']->getData())) {
+    $article->setYourFieldName(null);
 }
 ```
 
