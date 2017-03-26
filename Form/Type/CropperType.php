@@ -47,7 +47,7 @@ class CropperType extends AbstractType
 
         // If data, add delete field
         if ($builder->getData()) {
-            $builder->add('delete', CheckboxType::class, ['mapped' => false, 'required' => false, 'label' => 'Supprimer l\'image']);
+            $builder->add('delete', CheckboxType::class, ['mapped' => false, 'required' => false, 'label' => 'deleteImage', 'translation_domain' => 'BreithbarbotCropperBundle']);
         }
     }
 
@@ -58,7 +58,7 @@ class CropperType extends AbstractType
     {
         $data = $event->getData();
 
-        if (!$data) {
+        if (!$data || !isset($data['delete'])) {
             return;
         }
 
