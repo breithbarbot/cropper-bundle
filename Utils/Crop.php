@@ -82,7 +82,7 @@ class Crop
                             unlink($src);
                         }
 
-                        $this->setInfoFile($file, $filename, $folder, $default_folder);
+                        $this->setInfoFile($file, $filename, $folder, $default_folder, $extension);
 
                         $result = move_uploaded_file($file->getRealPath(), $src);
 
@@ -110,15 +110,15 @@ class Crop
 
     private function setDst($filename, $path)
     {
-        $this->dst = $path.$filename.'.png';
+        $this->dst = $path.$filename.$this->extension;
     }
 
-    private function setInfoFile($file, $filename, $folder, $default_folder)
+    private function setInfoFile($file, $filename, $folder, $default_folder, $extension)
     {
         $this->infoFile = [
-            'path'         => '/'.$default_folder.'/'.$folder.$filename.'.png',
-            'name'         => $filename.'.png',
-            'nameOriginal' => $filename.'.original.png',
+            'path'         => '/'.$default_folder.'/'.$folder.$filename.$extension,
+            'name'         => $filename.$extension,
+            'nameOriginal' => $filename.'.original'.$extension,
             'mime_type'    => $file->getMimeType(),
             'size'         => $file->getSize(),
         ];
@@ -233,8 +233,24 @@ class Crop
             $result = imagecopyresampled($dst_img, $src_img, $dst_x, $dst_y, $src_x, $src_y, $dst_w, $dst_h, $src_w, $src_h);
 
             if ($result) {
-                if (!imagepng($dst_img, $dst)) {
-                    $this->msg = "Failed to save the cropped image file";
+                switch ($this->type) {
+                    case IMAGETYPE_GIF:
+                        if (!imagegif($dst_img, $dst)) {
+                            $this->msg = "Failed to save the cropped image file";
+                        }
+                        break;
+
+                    case IMAGETYPE_JPEG:
+                        if (!imagejpeg($dst_img, $dst)) {
+                            $this->msg = "Failed to save the cropped image file";
+                        }
+                        break;
+
+                    case IMAGETYPE_PNG:
+                        if (!imagepng($dst_img, $dst)) {
+                            $this->msg = "Failed to save the cropped image file";
+                        }
+                        break;
                 }
             } else {
                 $this->msg = "Failed to crop the image file";
@@ -267,11 +283,11 @@ class Crop
     public function getResult()
     {
         $request = new Request();
-        
+
         $dirname = (strlen(dirname($_SERVER['SCRIPT_NAME'])) > 1) ? dirname($_SERVER['SCRIPT_NAME']) : "";
 
         return [
-            'path_image'   => $request->getBaseUrl().$dirname. $this->infoFile['path'],
+            'path_image'   => $request->getBaseUrl().$dirname.$this->infoFile['path'],
             'full_path'    => !empty($this->data) ? $this->dst : $this->src,
             'path'         => $this->infoFile['path'],
             'name'         => $this->infoFile['name'],
