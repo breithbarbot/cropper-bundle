@@ -13,9 +13,7 @@ Bundle based on the javascript plugin [Cropper](https://github.com/fengyuanchen/
 
 For the installation and procedure, see : [Resources/doc/index.md](Resources/doc/index.md)
 
-
 <br>
-
 
 ## Version
 
@@ -26,16 +24,17 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 1.0.0 - Start of the project ! 🎉🎊
 
 <br>
- 
+
 ## Coming soon...
 * Auto preview
 * More options
 * Ability to delete images (1/2)
 * Add more translated messages
+* Add function asset in twig
 * ...
 
 <br>
- 
+
 ## License
 
 [![License](https://poser.pugx.org/breithbarbot/cropper/license?format=flat-square)](https://github.com/breithbarbot/Cropper/blob/master/LICENSE)
