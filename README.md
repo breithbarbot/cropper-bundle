@@ -112,7 +112,7 @@ use Breithbarbot\CropperBundle\Form\Type\CropperType;
 
 $builder
     // ...
-    ->add('your_field_name', CropperType::class, ['data' => $builder->getData()->getImage(), 'required' => false]) // [...]->getImage() replace by your field name! 
+    ->add('your_field_name', CropperType::class, ['data' => $builder->getData()->getYourFieldName(), 'required' => false]) 
     // ...
 ;
 ```
