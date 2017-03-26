@@ -187,7 +187,9 @@ if ((isset($fai['delete']) && !empty($fai['delete']->getData())) || empty($fai['
 
 ## Version
 
-1.0.1 - Project in development...
+1.1.x - Project in development...
+
+1.1.0 - Update library, add transaltion, improve script, new field, ...
 
 1.0.0 - Start of the project ! 🎉🎊
 
@@ -197,7 +199,6 @@ if ((isset($fai['delete']) && !empty($fai['delete']->getData())) || empty($fai['
 * Auto preview
 * More options
 * Auto-detect image format (jpg, gif or png)
-* Implementation of a translation system
 * Ability to delete images
 * ...
 
