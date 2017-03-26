@@ -2,7 +2,7 @@
   "name": "breithbarbot/cropper",
   "type": "symfony-bundle",
   "description": "Simple cropping tool for symfony 3",
-  "keywords": ["crop", "cropping", "image", "avatar", "upload", "symfony-bundle", "form-types"],
+  "keywords": ["crop", "cropping", "image", "avatar", "upload", "symfony-bundle", "form-types", "symfony3", "php"],
   "homepage": "https://github.com/breithbarbot/Cropper",
   "license": "MIT",
   "authors": [
@@ -27,7 +27,7 @@
   "minimum-stability": "dev",
   "extra": {
     "branch-alias": {
-      "dev-master": "1.0.x-dev"
+      "dev-master": "1.1.x-dev"
     }
   }
 }
