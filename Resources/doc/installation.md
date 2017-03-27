@@ -25,9 +25,9 @@ Enable the bundle in the kernel :
 public function registerBundles()
 {
     $bundles = array(
-        // ...
+        // [...]
         new Breithbarbot\CropperBundle\BreithbarbotCropperBundle(),
-        // ...
+        // [...]
     );
 }
 ```

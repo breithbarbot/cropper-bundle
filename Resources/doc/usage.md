@@ -14,16 +14,16 @@
 <?php
 
 // [...]
-
 use Breithbarbot\CropperBundle\Form\Type\CropperType;
 
-// [...]
-
-$builder
-    // [...]
-    ->add('your_field_name', CropperType::class, ['data' => $builder->getData()->getYourFieldName(), 'required' => false]) 
-    // [...]
-;
+public function buildForm(FormBuilderInterface $builder, array $options)
+{
+    $builder
+        // [...]
+        ->add('your_field_name', CropperType::class, ['data' => $builder->getData()->getYourFieldName(), 'required' => false]) 
+        // [...]
+    ;
+}
 ```
 
 <br>
@@ -62,7 +62,7 @@ Two params :
 ### Step 5: Add Association Mapping
 Add your Association Mapping with your File entity
 ```php
-// ...
+// [...]
 
 /**
  * @ORM\OneToOne(targetEntity="YourBundle\Entity\File", cascade={"persist"}, orphanRemoval=true)
@@ -70,7 +70,7 @@ Add your Association Mapping with your File entity
  */
 private $yourFieldName;
 
-// ...
+// [...]
 ```
 Then, run the following commands :
 * ```php bin/console doctrine:generate:entities YourBundle:YourEntity```
@@ -79,9 +79,11 @@ Then, run the following commands :
 <br>
 
 ### Step 6: Remove association if delete image OR is empty
-Add script before the ```php $em->persist($entity); ``` in your **controler**
+Add script before the ```php $em->persist($entity); ``` :
 
 ```php
+// YourBundle/Controller/CustomController.php
+
 // If delete field is true
 // OR
 // is field is empty
