@@ -38,12 +38,12 @@ public function buildForm(FormBuilderInterface $builder, array $options)
 ### Step 3: Add modal
 Include modal with params
 ```twig
-{% include 'BreithbarbotCropperBundle:Form:cropper_modal.html.twig' with {'path_image': 'files/actus/', 'width': '400', 'height': '225'} %}
+{% include 'BreithbarbotCropperBundle:Form:cropper_modal.html.twig' with {'mapping': 'name_custom_entity', 'width': '400', 'height': '225'} %}
 ```
 Parameter :
-* path_image : Image Directory
-* width : Width of cropped image
-* height : Height of cropped image
+* mapping : name_custom_entity
+* width   : Width of cropped image
+* height  : Height of cropped image
 
 <br>
 

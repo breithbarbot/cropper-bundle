@@ -74,8 +74,8 @@ breithbarbot_cropper:
         default_folder: 'uploads'
         data_class: 'YourBundle\Entity\File'
     mappings:
-        name_entity_custom:
-            path: files/test/
+        name_custom_entity:
+            path: files/news/
         # ...
 ```
 
