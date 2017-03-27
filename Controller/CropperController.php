@@ -24,6 +24,13 @@ class CropperController extends Controller
      */
     public function cropAction(Request $request)
     {
+        if (!array_key_exists($request->request->get('mapping'),$this->getParameter('breithbarbot_cropper.mappings'))) {
+            return new JsonResponse([
+                'state'   => 200,
+                'message' => '<b>'.$request->request->get('mapping')."</b> is unrecognized!",
+            ]);
+        }
+
         $default_folder = !empty($this->getParameter('breithbarbot_cropper.default_folder')) ? $this->getParameter('breithbarbot_cropper.default_folder') : 'uploads';
 
         $avatar_src = $request->request->get('avatar_src');
