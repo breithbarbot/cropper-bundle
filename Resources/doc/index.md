@@ -20,10 +20,10 @@ Replace all words following by the correct name in your app ;-) :
 <br>
 
 ## Installation
-[Installation procedure](installation.md)
+- [Installation procedure](installation.md)
 
 <br>
 
 ## Usage
-[Usage Instructions](usage.md)
-[Usage in Twig Instructions](usage_twig.md)
+- [Usage Instructions](usage.md)
+- [Usage in Twig Instructions](usage_twig.md)
