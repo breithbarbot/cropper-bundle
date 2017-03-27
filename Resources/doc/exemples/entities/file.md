@@ -1,4 +1,4 @@
-#Exemple File.php entity
+# Exemple File.php entity
 ```php
 <?php
 namespace YourBundle\Entity;
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @link http://atlantic18.github.io/DoctrineExtensions/doc/uploadable.html Documentation Uploadable behavior extension for Doctrine 2
  *
  * @ORM\Table(name="file")
- * @ORM\Entity(repositoryClass="Breithbarbot\AdminBundle\Repository\FileRepository")
+ * @ORM\Entity(repositoryClass="YourBundle\Repository\FileRepository")
  * @Gedmo\Uploadable(callback="callbackMethod", filenameGenerator="ALPHANUMERIC", appendNumber=true)
  * @ORM\HasLifecycleCallbacks()
  */
@@ -154,7 +154,7 @@ class File
         return $this->file;
     }
     
-    // Getter & Setter...and more custom... 
+    // Getter, setter and more custom... 
     // [...]
 }
 ```
