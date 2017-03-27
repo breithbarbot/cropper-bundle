@@ -30,7 +30,6 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 * More options
 * Ability to delete images (1/2)
 * Add more translated messages
-* Add function asset in twig
 * ...
 
 <br>
