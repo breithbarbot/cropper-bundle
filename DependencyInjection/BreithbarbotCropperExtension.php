@@ -33,5 +33,6 @@ class BreithbarbotCropperExtension extends Extension
 
         $container->setParameter('breithbarbot_cropper.default_folder', $config['config']['default_folder']);
         $container->setParameter('breithbarbot_cropper.data_class', $config['config']['data_class']);
+        $container->setParameter('breithbarbot_cropper.mappings', $config['mappings']);
     }
 }
