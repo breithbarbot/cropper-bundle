@@ -4,3 +4,9 @@ services:
         tags:
             - { name: form.type, alias: cropper }
         arguments: ['%breithbarbot_cropper.data_class%']
+
+    breithbarbot.cropper.cropper_extension:
+        class: Breithbarbot\CropperBundle\Twig\Extension\CropperExtension
+        tags:
+            - { name: twig.extension }
+        arguments: ['@assets.packages']
