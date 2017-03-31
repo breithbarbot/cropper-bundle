@@ -2,9 +2,9 @@
 
 1. Download Cropper Bundle
 2. Enable the bundle
-3. Install the assets
-4. Configure the BreithbarbotCropperBundle
-5. Import BreithbarbotCropperBundle routing files
+3. Configure the BreithbarbotCropperBundle
+4. Import BreithbarbotCropperBundle routing files
+5. Install the assets
 6. Clear caches
 
 <br>
@@ -35,16 +35,7 @@ public function registerBundles()
 
 <br>
 
-
-### Step 3: Install the assets
-Used to install multimedia files in the web/ folder
-```bash
-php bin/console assets:install --symlink
-```
-
-<br>
-
-### Step 4: Configure the BreithbarbotCropperBundle
+### Step 3: Configure the BreithbarbotCropperBundle
 Configure the bundle :
 ```yaml
 # app/config/config.yml
@@ -90,7 +81,7 @@ Option `data_class` refers to your Entity `File` with at least the following fie
 
 <br>
 
-### Step 5: Import BreithbarbotCropperBundle routing files
+### Step 4: Import BreithbarbotCropperBundle routing files
 Import the routing:
 ```yaml
 # app/config/routing.yml
@@ -99,6 +90,15 @@ Import the routing:
 breithbarbot_cropper:
     resource: "@BreithbarbotCropperBundle/Resources/config/routing.yml"
     prefix:   /cropper
+```
+
+<br>
+
+
+### Step 5: Install the assets
+Used to install multimedia files in the web/ folder
+```bash
+php bin/console assets:install --symlink
 ```
 
 <br>
