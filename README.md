@@ -25,11 +25,18 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 
 <br>
 
+## Releases
+
+[Go to all releases](https://github.com/breithbarbot/Cropper/releases)
+
+<br>
+
 ## Coming soon...
 * Auto preview
 * More options
 * Ability to delete images (1/2)
 * Add more translated messages
+* Add unique ID if the filename is not empty
 * ...
 
 <br>
