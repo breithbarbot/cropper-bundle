@@ -192,7 +192,7 @@ Crop.prototype = {
             this.$img.cropper({
                 aspectRatio: this.$aspectRatio,
                 wheelZoomRatio: 0.03,
-                cropBoxResizable: false,
+                autoCropArea: 1,
                 preview: this.$avatarPreview.selector,
                 crop: function (e) {
                     // console.log(e);
