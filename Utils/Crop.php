@@ -9,7 +9,6 @@
 
 namespace Breithbarbot\CropperBundle\Utils;
 
-
 use Symfony\Component\HttpFoundation\Request;
 
 class Crop
@@ -22,7 +21,7 @@ class Crop
     private $msg;
     private $infoFile;
 
-    function __construct($src, $data, $file, $filename, $path, $folder, $size, $default_folder)
+    public function __construct($src, $data, $file, $filename, $path, $folder, $size, $default_folder)
     {
         $this->setSrc($src, $filename, $path);
         $this->setData($data);
@@ -60,12 +59,12 @@ class Crop
 
             // Test create empty folder
             if (!is_dir($path)) {
-                $each_folder = explode("/", $folder);
-                $path_tmp = str_replace($folder, "", $path);
+                $each_folder = explode('/', $folder);
+                $path_tmp = str_replace($folder, '', $path);
                 $pathname = $path_tmp;
                 foreach ($each_folder as $item) {
                     if (!empty($item)) {
-                        $pathname .= $item."/";
+                        $pathname .= $item.'/';
                         if (!is_dir($pathname)) {
                             mkdir($pathname);
                         }
@@ -78,7 +77,7 @@ class Crop
                     $extension = image_type_to_extension($type);
                     $src = $path.$filename.'.original'.$extension;
 
-                    if ($type == IMAGETYPE_GIF || $type == IMAGETYPE_JPEG || $type == IMAGETYPE_PNG) {
+                    if ($type === IMAGETYPE_GIF || $type === IMAGETYPE_JPEG || $type === IMAGETYPE_PNG) {
 
                         if (file_exists($src)) {
                             unlink($src);
@@ -103,7 +102,7 @@ class Crop
                     $this->msg = 'Please upload image file';
                 }
             } else {
-                $this->msg = "Upload folder is missing";
+                $this->msg = 'Upload folder is missing';
             }
         } else {
             $this->msg = $this->codeToMessage($errorCode);
@@ -146,7 +145,7 @@ class Crop
             }
 
             if (!$src_img) {
-                $this->msg = "Failed to read the image file";
+                $this->msg = 'Failed to read the image file';
 
                 return;
             }
@@ -175,8 +174,8 @@ class Crop
                 $src_img_h = $size_w * sin($arc) + $size_h * cos($arc);
 
                 // Fix rotated image miss 1px issue when degrees < 0
-                $src_img_w -= 1;
-                $src_img_h -= 1;
+                --$src_img_w;
+                --$src_img_h;
             }
 
             $tmp_img_w = $data->width;
@@ -238,24 +237,24 @@ class Crop
                 switch ($this->type) {
                     case IMAGETYPE_GIF:
                         if (!imagegif($dst_img, $dst)) {
-                            $this->msg = "Failed to save the cropped image file";
+                            $this->msg = 'Failed to save the cropped image file';
                         }
                         break;
 
                     case IMAGETYPE_JPEG:
                         if (!imagejpeg($dst_img, $dst)) {
-                            $this->msg = "Failed to save the cropped image file";
+                            $this->msg = 'Failed to save the cropped image file';
                         }
                         break;
 
                     case IMAGETYPE_PNG:
                         if (!imagepng($dst_img, $dst)) {
-                            $this->msg = "Failed to save the cropped image file";
+                            $this->msg = 'Failed to save the cropped image file';
                         }
                         break;
                 }
             } else {
-                $this->msg = "Failed to crop the image file";
+                $this->msg = 'Failed to crop the image file';
             }
 
             imagedestroy($src_img);

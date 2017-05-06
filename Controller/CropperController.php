@@ -9,7 +9,6 @@
 
 namespace Breithbarbot\CropperBundle\Controller;
 
-
 use Breithbarbot\CropperBundle\Utils\Crop;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -27,7 +26,7 @@ class CropperController extends Controller
         if (!array_key_exists($request->request->get('mapping'),$this->getParameter('breithbarbot_cropper.mappings'))) {
             return new JsonResponse([
                 'state'   => 200,
-                'message' => '<b>'.$request->request->get('mapping')."</b> is unrecognized!",
+                'message' => '<b>'.$request->request->get('mapping').'</b> is unrecognized!',
             ]);
         }
 
@@ -44,12 +43,12 @@ class CropperController extends Controller
         $base_path = dirname($_SERVER['SCRIPT_FILENAME']).'/'.$default_folder.'/';
 
         $crop = new Crop(
-            isset($avatar_src) ? $avatar_src : null,
-            isset($avatar_data) ? $avatar_data : null,
-            isset($avatar_file) ? $avatar_file : null,
+            $avatar_src ?? null,
+            $avatar_data ?? null,
+            $avatar_file ?? null,
             !empty($filename) ? $filename : sha1(uniqid(time(), true)),
-            !empty($path) ? $base_path.$path : $base_path."files/",
-            !empty($path) ? $path : "files/",
+            !empty($path) ? $base_path.$path : $base_path.'files/',
+            !empty($path) ? $path : 'files/',
             ['width' => $width, 'height' => $height],
             $default_folder
         );

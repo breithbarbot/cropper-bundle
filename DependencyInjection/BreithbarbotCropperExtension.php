@@ -9,7 +9,6 @@
 
 namespace Breithbarbot\CropperBundle\DependencyInjection;
 
-
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Loader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
@@ -22,6 +21,7 @@ class BreithbarbotCropperExtension extends Extension
 {
     /**
      * {@inheritDoc}
+     * @throws \Exception
      */
     public function load(array $configs, ContainerBuilder $container)
     {

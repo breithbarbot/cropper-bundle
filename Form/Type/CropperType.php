@@ -9,7 +9,6 @@
 
 namespace Breithbarbot\CropperBundle\Form\Type;
 
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -27,7 +26,7 @@ class CropperType extends AbstractType
      *
      * @param $dataClass
      */
-    function __construct($dataClass)
+    public function __construct($dataClass)
     {
         $this->dataClass = $dataClass;
     }
@@ -69,6 +68,7 @@ class CropperType extends AbstractType
 
     /**
      * {@inheritDoc}
+     * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)
     {

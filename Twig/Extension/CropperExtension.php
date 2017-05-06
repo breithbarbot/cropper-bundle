@@ -9,7 +9,6 @@
 
 namespace Breithbarbot\CropperBundle\Twig\Extension;
 
-
 use Symfony\Component\Asset\Packages;
 
 class CropperExtension extends \Twig_Extension
