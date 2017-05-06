@@ -45,13 +45,13 @@ stof_doctrine_extensions:
     default_locale: "%locale%"
     orm:
         default:
-            loggable:      true
-            uploadable:    true
+            loggable:    true
+            uploadable:  true
 
     # Only used if you activated the Uploadable extension
     uploadable:
         # Default file path: This is one of the three ways you can configure the path for the Uploadable extension
-        default_file_path:       "%kernel.root_dir%/../web/uploads/files"
+        default_file_path: "%kernel.root_dir%/../web/uploads/files"
 
         # Mime type guesser class: Optional. By default, we provide an adapter for the one present in the HttpFoundation component of Symfony
         mime_type_guesser_class: Stof\DoctrineExtensionsBundle\Uploadable\MimeTypeGuesserAdapter
