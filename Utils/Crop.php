@@ -285,7 +285,7 @@ class Crop
     {
         $request = new Request();
 
-        $dirname = (strlen(dirname($_SERVER['SCRIPT_NAME'])) > 1) ? dirname($_SERVER['SCRIPT_NAME']) : "";
+        $dirname = (strlen(dirname($_SERVER['SCRIPT_NAME'])) > 1) ? dirname($_SERVER['SCRIPT_NAME']) : '';
 
         // Fix for app work with subfolders
         $path = $this->infoFile['path'];
