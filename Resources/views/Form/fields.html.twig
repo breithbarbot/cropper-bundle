@@ -1,13 +1,13 @@
 {% block breithbarbot_cropper_bundle_cropper_type_widget %}
     {% spaceless %}
-        <div class="avatar-view" title="Outil de cropping">
-            <img class="img-responsive img-thumbnail" src="{% if form.vars.value is not null %}{{ breithbarbot_cropper_asset(form.vars.value) }}{% else %}{{ asset('bundles/breithbarbotcropper/img/empty.png') }}{% endif %}" alt="Avatar">
+        <div class="avatar-view" title="Outil de cropping" onclick="loadCropper(this);">
+            <img class="img-responsive img-thumbnail" src="{% if form.vars.value is not null %}{{ breithbarbot_cropper_asset(form.vars.value) }}{% else %}{{ asset('bundles/breithbarbotcropper/img/empty.png') }}{% endif %}" alt="Image cropped">
+
+            {% if form.delete is defined %}
+                {{ form_row(form.delete) }}
+            {% endif %}
+
+            {{ form_rest(form) }}
         </div>
-
-        {% if form.delete is defined %}
-            {{ form_row(form.delete) }}
-        {% endif %}
-
-        {{ form_rest(form) }}
     {% endspaceless %}
 {% endblock %}

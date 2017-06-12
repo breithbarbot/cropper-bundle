@@ -23,29 +23,30 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="avatarInput">Selectionner une image</label>
-                                            <input type="file" class="avatar-input form-control" id="avatarInput" name="avatar_file" accept="image/x-png,image/gif,image/jpeg">
+                                            <input type="file" class="avatar-input form-control" onchange="previewCropper(this)" id="avatarInput" name="avatar_file" accept="image/x-png,image/gif,image/jpeg">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="avatarInput">Nom de fichier</label>
-                                            <input type="text" class="form-control" name="filename">
+                                            <input type="text" id="avatarInput" class="form-control" name="filename">
                                         </div>
                                     </div>
                                 </div>
 
-                                <input type="hidden" name="mapping" value="{{ mapping }}">
-                                <input type="hidden" name="width" value="{{ width }}">
-                                <input type="hidden" name="height" value="{{ height }}">
+                                <input type="hidden" name="mapping" value="{{ mapping }}"> <input type="hidden" name="width" value="{{ width }}"> <input type="hidden" name="height" value="{{ height }}">
                             </div>
 
                             <!-- Crop and preview -->
                             <div class="row">
                                 <div class="col-md-9">
-                                    <div class="avatar-wrapper"></div>
+                                    <div class="avatar-wrapper">
+                                    </div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="avatar-preview" style="height: auto !important;"></div>
+                                    <div class="avatar-preview" style="height: auto !important;">
+                                        <img src="" height="200" alt="Aperçu de l’image...">
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -62,8 +63,111 @@
 
 {% block cropper_javascripts %}
     <script src="{{ asset('bundles/breithbarbotcropper/js/cropper.min.js') }}"></script>
-    <script src="{{ asset('bundles/breithbarbotcropper/js/main.js') }}"></script>
     <script>
-        $('#avatar-modal').on({'hidden.bs.modal': destroyCropper});
+        $(document).ready(function () {
+
+            // Initializing Cropper
+            $('#avatar-modal').on('shown.bs.modal', function () {
+                var $image = $('.avatar-wrapper img');
+                var $preview = $('.avatar-preview');
+                var cropBoxData;
+                var canvasData;
+
+                $image.cropper({
+                    aspectRatio   : {{ ratio }},
+                    wheelZoomRatio: 0.03,
+                    autoCropArea  : 1,
+                    preview       : $preview,
+                    crop          : function (e) {
+                        var json = [
+                            '{"x":' + e.x,
+                            '"y":' + e.y,
+                            '"height":' + e.height,
+                            '"width":' + e.width,
+                            '"rotate":' + e.rotate + '}'
+                        ].join();
+
+                        $('.avatar-data').val(json);
+                    }
+                });
+            }).on('hidden.bs.modal', function () {
+                // Destroy cropper
+                $('.avatar-wrapper img').cropper('destroy');
+
+                // Reset form
+                $('.avatar-form')[0].reset();
+            });
+        });
+
+        // Initializing elements
+        function loadCropper(elem) {
+
+            // Closure
+            $elem = $(elem);
+
+            // Set current image
+            $('#avatar-modal .avatar-wrapper').empty().html('<img src="' + $elem.find('img').attr('src') + '" />');
+
+            // Open the modal
+            $('#avatar-modal').modal('show');
+
+            // Processing the cropped image
+            $('#avatar-modal').find('form').on('submit', function (e) {
+                e.preventDefault();
+
+                $.ajax({
+                    contentType: false,
+                    processData: false,
+                    data       : new FormData(this),
+                    dataType   : "json",
+                    method     : "POST",
+                    url        : $('#avatar-modal').find('form').attr('action'),
+                    success    : function (response) {
+                        if (response.state === 200) {
+                            $elem.find('[data-id="full_path"]').val(response.result.full_path);
+                            $elem.find('[data-id="path"]').val(response.result.path);
+                            $elem.find('[data-id="name"]').val(response.result.name);
+                            $elem.find('[data-id="mime_type"]').val(response.result.mime_type);
+                            $elem.find('[data-id="size"]').val(response.result.size);
+
+                            // Set new image cropped
+                            $elem.find('img').attr('src', response.result.path_image);
+
+                            // Reset form
+                            $('.avatar-form')[0].reset();
+
+                            // Close the modal
+                            $('#avatar-modal').modal('hide');
+                        } else {
+                            alert('Une erreur s\'est produite');
+                        }
+                    }, error   : function () {
+                        console.log("Erreur lors de la lecture des données");
+                    }
+                });
+
+            });
+
+        }
+
+        // Cropper preview image
+        function previewCropper(elem) {
+            var file = $(elem).get(0).files[0];
+
+            if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+                var reader = new FileReader();
+
+                reader.addEventListener("load", function () {
+                    // Replace the image's src and rebuild the cropper.
+                    $('.avatar-wrapper img').cropper('replace', reader.result);
+                }, false);
+
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
+            } else {
+                alert('This is not a valid file');
+            }
+        }
     </script>
 {% endblock %}
