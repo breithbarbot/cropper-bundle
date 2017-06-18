@@ -19,21 +19,26 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class CropperType extends AbstractType
 {
+    /**
+     * @var $dataClass
+     */
     private $dataClass;
 
     /**
      * @var $container
      */
-    public $container;
+    private $container;
 
     /**
      * CropperType constructor.
      *
      * @param $dataClass
+     * @param $container
      */
-    public function __construct($dataClass)
+    public function __construct($dataClass, $container)
     {
         $this->dataClass = $dataClass;
+        $this->container = $container;
     }
 
     /**
@@ -47,13 +52,12 @@ class CropperType extends AbstractType
             ->add('name', HiddenType::class, ['attr' => ['data-id' => 'name']])
             ->add('mime_type', HiddenType::class, ['attr' => ['data-id' => 'mime_type']])
             ->add('size', HiddenType::class, ['attr' => ['data-id' => 'size']])
-            ->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'onPreSubmit'])
-        ;
+            ->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'onPreSubmit']);
 
         if (!empty($options['mapped'])) {
             $mapping = $this->container->getParameter('breithbarbot_cropper.mappings')[$options['mapping']];
-            $builder->add('_width', HiddenType::class, ['mapped' => false , 'data' => $mapping['width']]);
-            $builder->add('_height', HiddenType::class, ['mapped' => false , 'data' => $mapping['height']]);
+            $builder->add('_width', HiddenType::class, ['mapped' => false, 'data' => $mapping['width']]);
+            $builder->add('_height', HiddenType::class, ['mapped' => false, 'data' => $mapping['height']]);
         }
 
         // If data, add delete field
@@ -86,7 +90,7 @@ class CropperType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => $this->dataClass,
-            'mapping' => null,
+            'mapping'    => null,
         ));
     }
 
