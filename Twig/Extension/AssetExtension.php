@@ -11,7 +11,7 @@ namespace Breithbarbot\CropperBundle\Twig\Extension;
 
 use Symfony\Component\Asset\Packages;
 
-class CropperExtension extends \Twig_Extension
+class AssetExtension extends \Twig_Extension
 {
     /**
      * @var Packages
