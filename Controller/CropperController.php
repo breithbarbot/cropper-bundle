@@ -23,7 +23,7 @@ class CropperController extends Controller
      */
     public function cropAction(Request $request)
     {
-        if (!array_key_exists($request->request->get('mapping'),$this->getParameter('breithbarbot_cropper.mappings'))) {
+        if (!array_key_exists($request->request->get('mapping'), $this->getParameter('breithbarbot_cropper.mappings'))) {
             return new JsonResponse([
                 'state'   => 200,
                 'message' => '<b>'.$request->request->get('mapping').'</b> is unrecognized!',
