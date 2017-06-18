@@ -3,9 +3,7 @@ services:
         class: Breithbarbot\CropperBundle\Form\Type\CropperType
         tags:
             - { name: form.type, alias: cropper }
-        arguments: ['%breithbarbot_cropper.data_class%']
-        properties:
-            container: '@service_container'
+        arguments: ['%breithbarbot_cropper.data_class%', '@service_container']
 
     breithbarbot.cropper.twig.extension.asset:
         class: Breithbarbot\CropperBundle\Twig\Extension\AssetExtension
@@ -17,6 +15,4 @@ services:
         class: Breithbarbot\CropperBundle\Twig\Extension\ParameterExtension
         tags:
           - { name: twig.extension }
-#        arguments: ['@service_container']
-        properties:
-            container: '@service_container'
+        arguments: ['@service_container']
