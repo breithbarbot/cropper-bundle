@@ -1,16 +1,19 @@
+{% set current_mapping = breithbarbot_cropper_parameter('breithbarbot_cropper.mappings')[mapping] %}
+{% set identifier = (id is defined and id is not empty) ? '-'~id : '' %}
+
 {% block cropper_stylesheets %}
     <link href="{{ asset('bundles/breithbarbotcropper/css/cropper.min.css') }}" rel="stylesheet">
     <link href="{{ asset('bundles/breithbarbotcropper/css/main.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block cropper_modals %}
-    <div class="modal fade" id="avatar-modal" aria-hidden="true" aria-labelledby="avatar-modal-label" role="dialog">
+    <div class="modal fade" id="avatar-modal{{ identifier }}" aria-hidden="true" aria-labelledby="avatar-modal{{ identifier }}-label" role="dialog">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <form class="avatar-form" action="{{ path('breithbarbot_cropper_crop') }}" enctype="multipart/form-data" method="post">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" id="avatar-modal-label">Outil de cropping</h4>
+                        <h4 class="modal-title" id="avatar-modal{{ identifier }}-label">Outil de cropping</h4>
                     </div>
                     <div class="modal-body">
                         <div class="avatar-body">
@@ -34,7 +37,7 @@
                                     </div>
                                 </div>
 
-                                <input type="hidden" name="mapping" value="{{ mapping }}"> <input type="hidden" name="width" value="{{ width }}"> <input type="hidden" name="height" value="{{ height }}">
+                                <input type="hidden" name="mapping" value="{{ mapping }}">
                             </div>
 
                             <!-- Crop and preview -->
@@ -63,18 +66,19 @@
 
 {% block cropper_javascripts %}
     <script src="{{ asset('bundles/breithbarbotcropper/js/cropper.min.js') }}"></script>
+    <script src="{{ asset('bundles/breithbarbotcropper/js/dummy_image.js') }}"></script>
     <script>
         $(document).ready(function () {
 
             // Initializing Cropper
-            $('#avatar-modal').on('shown.bs.modal', function () {
+            $('#avatar-modal{{ identifier }}').on('shown.bs.modal', function () {
                 var $image = $('.avatar-wrapper img');
                 var $preview = $('.avatar-preview');
                 var cropBoxData;
                 var canvasData;
 
                 $image.cropper({
-                    aspectRatio   : {{ ratio }},
+                    aspectRatio   : {{ current_mapping.ratio }},
                     wheelZoomRatio: 0.03,
                     autoCropArea  : 1,
                     preview       : $preview,
@@ -102,17 +106,20 @@
         // Initializing elements
         function loadCropper(elem) {
 
+            // Variable
+            $avatarModal = $('#avatar-modal{{ identifier }}');
+
             // Closure
             $elem = $(elem);
 
             // Set current image
-            $('#avatar-modal .avatar-wrapper').empty().html('<img src="' + $elem.find('img').attr('src') + '" />');
+            $avatarModal.find('.avatar-wrapper').empty().html('<img src="' + $elem.find('img').attr('src') + '" />');
 
             // Open the modal
-            $('#avatar-modal').modal('show');
+            $avatarModal.modal('show');
 
             // Processing the cropped image
-            $('#avatar-modal').find('form').on('submit', function (e) {
+            $avatarModal.find('form').on('submit', function (e) {
                 e.preventDefault();
 
                 $.ajax({
@@ -122,7 +129,7 @@
                     dataType   : "json",
                     method     : "POST",
                     cache      : false,
-                    url        : $('#avatar-modal').find('form').attr('action'),
+                    url        : $avatarModal.find('form').attr('action'),
                     success    : function (response) {
                         if (response.state === 200) {
                             $elem.find('[data-id="full_path"]').val(response.result.full_path);
@@ -138,7 +145,7 @@
                             $('.avatar-form')[0].reset();
 
                             // Close the modal
-                            $('#avatar-modal').modal('hide');
+                            $avatarModal.modal('hide');
                         } else {
                             alert('Une erreur s\'est produite');
                         }
@@ -161,10 +168,13 @@
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
+                    // Replace the image's src and rebuild the cropper.
                     $('.avatar-wrapper img').cropper('replace', reader.result);
                 }
 
-                reader.readAsDataURL(file);
+                if (file) {
+                    reader.readAsDataURL(file);
+                }
             } else {
                 alert('File not supported!');
             }
