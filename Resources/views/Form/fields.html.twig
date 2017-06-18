@@ -2,19 +2,19 @@
     {% spaceless %}
         <div class="avatar-view" title="Outil de cropping" onclick="loadCropper(this);">
             <img class="img-responsive img-thumbnail" src="{% if form.vars.value is not null %}{{ breithbarbot_cropper_asset(form.vars.value) }}{% endif %}" alt="Image cropped">
+
+            {{ form_widget(form.full_path) }}
+            {{ form_widget(form.path) }}
+            {{ form_widget(form.name) }}
+            {{ form_widget(form.mime_type) }}
+            {{ form_widget(form.size) }}
+
+            {#{{ form_rest(form) }}#}
         </div>
 
         {% if form.delete is defined %}
             {{ form_row(form.delete) }}
         {% endif %}
-
-        {{ form_widget(form.full_path) }}
-        {{ form_widget(form.path) }}
-        {{ form_widget(form.name) }}
-        {{ form_widget(form.mime_type) }}
-        {{ form_widget(form.size) }}
-
-        {#{{ form_rest(form) }}#}
         {% if form.vars.value is null %}
             <script>
                 $(document).ready(function () {
