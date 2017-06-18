@@ -14,7 +14,17 @@ class ParameterExtension extends \Twig_Extension
     /**
      * @var $container
      */
-    public $container;
+    private $container;
+
+    /**
+     * ParameterExtension constructor.
+     *
+     * @param $container
+     */
+    public function __construct($container)
+    {
+        $this->container = $container;
+    }
 
     /**
      * {@inheritdoc}
