@@ -15,11 +15,13 @@
         {{ form_widget(form.size) }}
 
         {#{{ form_rest(form) }}#}
-        <script>
-            $(document).ready(function () {
-                $('.avatar-view img').attr('src', '/placeholder/{{ form._width.vars.value~'x'~form._height.vars.value }}');
-                DummyImage.generate();
-            });
-        </script>
+        {% if form.vars.value is null %}
+            <script>
+                $(document).ready(function () {
+                    $('.avatar-view img').attr('src', '/placeholder/{{ form._width.vars.value~'x'~form._height.vars.value }}');
+                    DummyImage.generate();
+                });
+            </script>
+        {% endif %}
     {% endspaceless %}
 {% endblock %}
