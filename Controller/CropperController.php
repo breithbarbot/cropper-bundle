@@ -36,9 +36,10 @@ class CropperController extends Controller
         $avatar_data = $request->request->get('avatar_data');
         $avatar_file = $request->files->get('avatar_file');
         $filename = $request->request->get('filename');
-        $path = $this->getParameter('breithbarbot_cropper.mappings')[$request->request->get('mapping')]['path'];
-        $width = $request->request->get('width');
-        $height = $request->request->get('height');
+        $mapping = $this->getParameter('breithbarbot_cropper.mappings')[$request->request->get('mapping')];
+        $path = $mapping['path'];
+        $width = $mapping['width'];
+        $height = $mapping['height'];
 
         $base_path = dirname($_SERVER['SCRIPT_FILENAME']).'/'.$default_folder.'/';
 
