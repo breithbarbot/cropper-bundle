@@ -1,12 +1,22 @@
 services:
-    breithbarbot.cropper.cropper_type:
+    breithbarbot.cropper.form.type.cropper:
         class: Breithbarbot\CropperBundle\Form\Type\CropperType
         tags:
             - { name: form.type, alias: cropper }
         arguments: ['%breithbarbot_cropper.data_class%']
+        properties:
+            container: '@service_container'
 
-    breithbarbot.cropper.cropper_extension:
-        class: Breithbarbot\CropperBundle\Twig\Extension\CropperExtension
+    breithbarbot.cropper.twig.extension.asset:
+        class: Breithbarbot\CropperBundle\Twig\Extension\AssetExtension
         tags:
             - { name: twig.extension }
         arguments: ['@assets.packages']
+
+    breithbarbot.cropper.twig.extension.parameter:
+        class: Breithbarbot\CropperBundle\Twig\Extension\ParameterExtension
+        tags:
+          - { name: twig.extension }
+#        arguments: ['@service_container']
+        properties:
+            container: '@service_container'
