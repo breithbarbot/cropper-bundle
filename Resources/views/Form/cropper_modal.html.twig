@@ -121,6 +121,7 @@
                     data       : new FormData(this),
                     dataType   : "json",
                     method     : "POST",
+                    cache      : false,
                     url        : $('#avatar-modal').find('form').attr('action'),
                     success    : function (response) {
                         if (response.state === 200) {
@@ -151,22 +152,21 @@
         }
 
         // Cropper preview image
-        function previewCropper(elem) {
-            var file = $(elem).get(0).files[0];
+        function previewCropper(fileInput) {
+
+            var file = fileInput.files[0];
+            var imageType = /image.*/;
 
             if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
                 var reader = new FileReader();
 
-                reader.addEventListener("load", function () {
-                    // Replace the image's src and rebuild the cropper.
+                reader.onload = function (e) {
                     $('.avatar-wrapper img').cropper('replace', reader.result);
-                }, false);
-
-                if (file) {
-                    reader.readAsDataURL(file);
                 }
+
+                reader.readAsDataURL(file);
             } else {
-                alert('This is not a valid file');
+                alert('File not supported!');
             }
         }
     </script>
