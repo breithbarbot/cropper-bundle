@@ -32,12 +32,18 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 <br>
 
 ## Coming soon...
-* Auto preview
+* Auto preview (1/2)
 * More options
 * Ability to delete images (1/2)
 * Add more translated messages
-* Add unique ID if the filename is not empty
 * ...
+
+<br>
+
+## References / based on
+- [Cropper](https://github.com/fengyuanchen/cropper)
+- [Dummy Image](https://github.com/shaneriley/dummy_image)
+
 
 <br>
 
