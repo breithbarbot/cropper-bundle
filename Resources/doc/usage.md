@@ -44,6 +44,30 @@ public function buildForm(FormBuilderInterface $builder, array $options)
 }
 ```
 
+#### For multiple (by prototype) :
+
+```php
+<?php
+
+// [...]
+use Breithbarbot\CropperBundle\Form\Type\CropperType;
+
+public function buildForm(FormBuilderInterface $builder, array $options)
+{
+    $builder
+        // [...]
+         ->add('your_field_name', CollectionType::class, [
+             'entry_type'   => CropperType::class,
+             'allow_add'    => true,
+             'allow_delete' => true,
+             'prototype'    => true,
+             'entry_options'=>['mapping' => 'name_custom_entity']
+         ])
+        // [...]
+    ;
+}
+```
+
 <br>
 
 ### Step 3: Add modal
