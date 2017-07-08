@@ -58,21 +58,9 @@ class Crop
         if ($errorCode === UPLOAD_ERR_OK) {
             $type = exif_imagetype($file->getRealPath());
 
-            // Test create empty folder
-            if (!is_dir($path)) {
-                $each_folder = explode('/', $folder);
-                $path_tmp = str_replace($folder, '', $path);
-                $pathname = $path_tmp;
-                foreach ($each_folder as $item) {
-                    if (!empty($item)) {
-                        $pathname .= $item.'/';
-                        if (!is_dir($pathname)) {
-                            if (!@mkdir($pathname) && !is_dir($pathname)) {
-                                throw new Exception('Folder not created');
-                            }
-                        }
-                    }
-                }
+            // Create folder
+            if (!@mkdir('uploads/'.$folder, 0755, true) && !is_dir('uploads/'.$folder)) {
+                die('Failed to create folders...');
             }
 
             if (is_dir($path)) {
