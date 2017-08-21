@@ -1,8 +1,33 @@
+##########################################################
+# Copyright (c) 2017 Breith Barbot <b.breith@gmail.com>. #
+# Source : https://gitlab.com/snippets/1672174           #
+##########################################################
+
+
 # Managed by Composer #
 #######################
 /vendor/
 /composer.lock
 
+
+# Assets managed by yarn #
+##########################
+node_modules/
+/yarn.lock
+
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+
 # Idea files #
 ##############
 /.idea/
+/*.iml
