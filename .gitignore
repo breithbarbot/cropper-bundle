@@ -12,7 +12,6 @@
 
 # Managed by PHP Coding Standards Fixer #
 #########################################
-.php_cs
 .php_cs.cache
 
 
