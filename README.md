@@ -1,5 +1,6 @@
 # Cropper
-> Simple cropping tool for symfony 3
+
+> Simple cropping tool for symfony 3.4 and later
 
 Bundle based on the javascript plugin [Cropper](https://github.com/fengyuanchen/cropper) adapted for use under symfony 3
 
