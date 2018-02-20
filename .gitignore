@@ -10,6 +10,12 @@
 /composer.lock
 
 
+# Managed by PHP Coding Standards Fixer #
+#########################################
+.php_cs
+.php_cs.cache
+
+
 # Assets managed by yarn #
 ##########################
 node_modules/

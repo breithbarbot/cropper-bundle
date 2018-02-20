@@ -32,9 +32,5 @@ script:
   - ./vendor/bin/simple-phpunit
   # this checks that the source code follows the Symfony Code Syntax rules
   - '[[ "$TRAVIS_PHP_VERSION" == "nightly" ]] || ./vendor/bin/php-cs-fixer fix --diff --dry-run -v'
-  # this checks that the YAML config files contain no syntax errors
-  - ./bin/console lint:yaml config
-  # this checks that the application doesn't use dependencies with known security vulnerabilities
-  - ./bin/console security:check --end-point=http://security.sensiolabs.org/check_lock
   # this checks that the composer.json and composer.lock files are valid
   - composer validate --strict
