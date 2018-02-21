@@ -272,7 +272,7 @@ class Crop
         return 'Unknown upload error';
     }
 
-    public function getResult()
+    public function getResult(): array
     {
         $request = new Request();
 
