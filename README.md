@@ -8,7 +8,7 @@ Bundle based on the javascript plugin [Cropper](https://github.com/fengyuanchen/
 
 [![Latest Stable Version](https://img.shields.io/packagist/v/breithbarbot/cropper.svg?style=flat-square)](https://gitlab.com/breithbarbot/cropper)
 [![Build Status](https://img.shields.io/travis/breithbarbot/cropper/master.svg?style=flat-square)](https://travis-ci.org/breithbarbot/cropper)
-[![Total Downloads](https://img.shields.io/packagist/dt/breithbarbot/cropper.svg?style=flat-square)](https://gitlab.com/breithbarbot/cropper)
+[![Total Downloads](https://img.shields.io/packagist/dt/breithbarbot/cropper.svg?style=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
 
 <br>
 
