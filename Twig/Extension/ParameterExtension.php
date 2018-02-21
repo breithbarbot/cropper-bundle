@@ -1,18 +1,20 @@
 <?php
-/******************************************************************************
- * Copyright (c) 2017 Cropper. All rights reserved.                           *
- * Author      : Breith Barbot                                                *
- * Updated at  : 18/06/17 23:04                                               *
- * File name   : ParameterExtension.php                                       *
- * Description :                                                              *
- ******************************************************************************/
+
+/*
+ * This file is part of the Cropper package.
+ *
+ * (c) Breith Barbot <b.breith@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Breithbarbot\CropperBundle\Twig\Extension;
 
 class ParameterExtension extends \Twig_Extension
 {
     /**
-     * @var $container
+     * @var
      */
     private $container;
 

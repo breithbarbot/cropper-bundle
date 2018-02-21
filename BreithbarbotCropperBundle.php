@@ -1,21 +1,22 @@
 <?php
-/******************************************************************************
- * Copyright (c) 2017 Cropper. All rights reserved.                           *
- * Author      : Breith Barbot                                                *
- * Updated at  : 12/03/17 19:05                                               *
- * File name   : BreithbarbotCropperBundle.php                                *
- * Description :                                                              *
- ******************************************************************************/
+
+/*
+ * This file is part of the Cropper package.
+ *
+ * (c) Breith Barbot <b.breith@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Breithbarbot\CropperBundle;
-
 
 use Breithbarbot\CropperBundle\DependencyInjection\Compiler\FormPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
- * BreithbarbotCropperBundle class
+ * BreithbarbotCropperBundle class.
  *
  * @author Breith Barbot <b.breith@gmail.com>
  */

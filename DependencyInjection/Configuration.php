@@ -1,21 +1,24 @@
 <?php
-/******************************************************************************
- * Copyright (c) 2017 Cropper. All rights reserved.                           *
- * Author      : Breith Barbot                                                *
- * Updated at  : 12/03/17 15:33                                               *
- * File name   : Configuration.php                                            *
- * Description :                                                              *
- ******************************************************************************/
+
+/*
+ * This file is part of the Cropper package.
+ *
+ * (c) Breith Barbot <b.breith@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Breithbarbot\CropperBundle\DependencyInjection;
 
-use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 
 class Configuration implements ConfigurationInterface
 {
     /**
      * {@inheritdoc}
+     *
      * @throws \RuntimeException
      */
     public function getConfigTreeBuilder()

@@ -1,11 +1,13 @@
 <?php
-/******************************************************************************
- * Copyright (c) 2017 Cropper. All rights reserved.                           *
- * Author      : Breith Barbot                                                *
- * Updated at  : 12/03/17 19:35                                               *
- * File name   : FormPass.php                                                 *
- * Description :                                                              *
- ******************************************************************************/
+
+/*
+ * This file is part of the Cropper package.
+ *
+ * (c) Breith Barbot <b.breith@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Breithbarbot\CropperBundle\DependencyInjection\Compiler;
 
@@ -16,6 +18,7 @@ class FormPass implements CompilerPassInterface
 {
     /**
      * {@inheritdoc}
+     *
      * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
      */
     public function process(ContainerBuilder $container)

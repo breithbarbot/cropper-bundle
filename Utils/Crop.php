@@ -1,15 +1,16 @@
 <?php
-/******************************************************************************
- * Copyright (c) 2017 Cropper. All rights reserved.                           *
- * Author      : Breith Barbot                                                *
- * Updated at  : 12/03/17 02:44                                               *
- * File name   : Crop.php                                                     *
- * Description :                                                              *
- ******************************************************************************/
+
+/*
+ * This file is part of the Cropper package.
+ *
+ * (c) Breith Barbot <b.breith@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Breithbarbot\CropperBundle\Utils;
 
-use Symfony\Component\Config\Definition\Exception\Exception;
 use Symfony\Component\HttpFoundation\Request;
 
 class Crop
@@ -55,7 +56,7 @@ class Crop
     {
         $errorCode = $file->getError();
 
-        if ($errorCode === UPLOAD_ERR_OK) {
+        if (UPLOAD_ERR_OK === $errorCode) {
             $type = exif_imagetype($file->getRealPath());
 
             // Create folder
@@ -68,8 +69,7 @@ class Crop
                     $extension = image_type_to_extension($type);
                     $src = $path.$filename.'.original'.$extension;
 
-                    if ($type === IMAGETYPE_GIF || $type === IMAGETYPE_JPEG || $type === IMAGETYPE_PNG) {
-
+                    if (IMAGETYPE_GIF === $type || IMAGETYPE_JPEG === $type || IMAGETYPE_PNG === $type) {
                         if (file_exists($src)) {
                             unlink($src);
                         }
@@ -108,11 +108,11 @@ class Crop
     private function setInfoFile($file, $filename, $folder, $default_folder, $extension)
     {
         $this->infoFile = [
-            'path'         => '/'.$default_folder.'/'.$folder.$filename.$extension,
-            'name'         => $filename.$extension,
+            'path' => '/'.$default_folder.'/'.$folder.$filename.$extension,
+            'name' => $filename.$extension,
             'nameOriginal' => $filename.'.original'.$extension,
-            'mime_type'    => $file->getMimeType(),
-            'size'         => $file->getSize(),
+            'mime_type' => $file->getMimeType(),
+            'size' => $file->getSize(),
         ];
     }
 
@@ -151,7 +151,7 @@ class Crop
             $degrees = $data->rotate;
 
             // Rotate the source image
-            if (is_numeric($degrees) && $degrees !== 0) {
+            if (is_numeric($degrees) && 0 !== $degrees) {
                 // PHP's degrees is opposite to CSS's degrees
                 $new_img = imagerotate($src_img, -$degrees, imagecolorallocatealpha($src_img, 0, 0, 0, 127));
 
@@ -255,15 +255,15 @@ class Crop
 
     private function codeToMessage($code)
     {
-        $errors = array(
-            UPLOAD_ERR_INI_SIZE   => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
-            UPLOAD_ERR_FORM_SIZE  => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
-            UPLOAD_ERR_PARTIAL    => 'The uploaded file was only partially uploaded',
-            UPLOAD_ERR_NO_FILE    => 'No file was uploaded',
+        $errors = [
+            UPLOAD_ERR_INI_SIZE => 'The uploaded file exceeds the upload_max_filesize directive in php.ini',
+            UPLOAD_ERR_FORM_SIZE => 'The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form',
+            UPLOAD_ERR_PARTIAL => 'The uploaded file was only partially uploaded',
+            UPLOAD_ERR_NO_FILE => 'No file was uploaded',
             UPLOAD_ERR_NO_TMP_DIR => 'Missing a temporary folder',
             UPLOAD_ERR_CANT_WRITE => 'Failed to write file to disk',
-            UPLOAD_ERR_EXTENSION  => 'File upload stopped by extension',
-        );
+            UPLOAD_ERR_EXTENSION => 'File upload stopped by extension',
+        ];
 
         if (array_key_exists($code, $errors)) {
             return $errors[$code];
@@ -276,22 +276,22 @@ class Crop
     {
         $request = new Request();
 
-        $dirname = (strlen(dirname($_SERVER['SCRIPT_NAME'])) > 1) ? dirname($_SERVER['SCRIPT_NAME']) : '';
+        $dirname = (mb_strlen(\dirname($_SERVER['SCRIPT_NAME'])) > 1) ? \dirname($_SERVER['SCRIPT_NAME']) : '';
 
         // Fix for app work with subfolders
         $path = $this->infoFile['path'];
         if ($this->infoFile['path'][0] === '/') {
-            $path = substr($this->infoFile['path'], 1);
+            $path = mb_substr($this->infoFile['path'], 1);
         }
 
         return [
-            'path_image'   => $request->getBaseUrl().$dirname.$this->infoFile['path'],
-            'full_path'    => !empty($this->data) ? $this->dst : $this->src,
-            'path'         => $path,
-            'name'         => $this->infoFile['name'],
+            'path_image' => $request->getBaseUrl().$dirname.$this->infoFile['path'],
+            'full_path' => !empty($this->data) ? $this->dst : $this->src,
+            'path' => $path,
+            'name' => $this->infoFile['name'],
             'nameOriginal' => $this->infoFile['nameOriginal'],
-            'mime_type'    => $this->infoFile['mime_type'],
-            'size'         => $this->infoFile['size'],
+            'mime_type' => $this->infoFile['mime_type'],
+            'size' => $this->infoFile['size'],
         ];
     }
 

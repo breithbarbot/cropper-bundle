@@ -1,11 +1,13 @@
 <?php
-/******************************************************************************
- * Copyright (c) 2017 Cropper. All rights reserved.                           *
- * Author      : Breith Barbot                                                *
- * Updated at  : 12/03/17 20:29                                               *
- * File name   : CropperController.php                                        *
- * Description :                                                              *
- ******************************************************************************/
+
+/*
+ * This file is part of the Cropper package.
+ *
+ * (c) Breith Barbot <b.breith@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Breithbarbot\CropperBundle\Controller;
 
@@ -25,7 +27,7 @@ class CropperController extends Controller
     {
         if (!array_key_exists($request->request->get('mapping'), $this->getParameter('breithbarbot_cropper.mappings'))) {
             return new JsonResponse([
-                'state'   => 200,
+                'state' => 200,
                 'message' => '<b>'.$request->request->get('mapping').'</b> is unrecognized!',
             ]);
         }
@@ -41,7 +43,7 @@ class CropperController extends Controller
         $width = $mapping['width'];
         $height = $mapping['height'];
 
-        $base_path = dirname($_SERVER['SCRIPT_FILENAME']).'/'.$default_folder.'/';
+        $base_path = \dirname($_SERVER['SCRIPT_FILENAME']).'/'.$default_folder.'/';
 
         $crop = new Crop(
             $avatar_src ?? null,
@@ -55,9 +57,9 @@ class CropperController extends Controller
         );
 
         return new JsonResponse([
-            'state'   => 200,
+            'state' => 200,
             'message' => $crop->getMsg(),
-            'result'  => $crop->getResult(),
+            'result' => $crop->getResult(),
         ]);
     }
 }

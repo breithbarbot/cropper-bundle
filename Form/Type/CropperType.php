@@ -1,11 +1,13 @@
 <?php
-/******************************************************************************
- * Copyright (c) 2017 Cropper. All rights reserved.                           *
- * Author      : Breith Barbot                                                *
- * Updated at  : 12/03/17 19:30                                               *
- * File name   : CropperType.php                                              *
- * Description :                                                              *
- ******************************************************************************/
+
+/*
+ * This file is part of the Cropper package.
+ *
+ * (c) Breith Barbot <b.breith@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Breithbarbot\CropperBundle\Form\Type;
 
@@ -20,12 +22,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CropperType extends AbstractType
 {
     /**
-     * @var $dataClass
+     * @var
      */
     private $dataClass;
 
     /**
-     * @var $container
+     * @var
      */
     private $container;
 
@@ -42,7 +44,7 @@ class CropperType extends AbstractType
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -77,25 +79,26 @@ class CropperType extends AbstractType
             return;
         }
 
-        if ($data['delete']) {
+//        if ($data['delete']) {
 //            $event->setData(null);
-        }
+//        }
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
+     *
      * @throws \Symfony\Component\OptionsResolver\Exception\AccessException
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
+        $resolver->setDefaults([
             'data_class' => $this->dataClass,
-            'mapping'    => null,
-        ));
+            'mapping' => null,
+        ]);
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function getBlockPrefix()
     {

@@ -1,11 +1,13 @@
 <?php
-/******************************************************************************
- * Copyright (c) 2017 Breithbarbot.name. All rights reserved.                 *
- * Author      : Breith Barbot                                                *
- * Updated at  : 27/03/17 01:12                                               *
- * File name   : CropperExtension.php                                         *
- * Description :                                                              *
- ******************************************************************************/
+
+/*
+ * This file is part of the Cropper package.
+ *
+ * (c) Breith Barbot <b.breith@gmail.com>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
 
 namespace Breithbarbot\CropperBundle\Twig\Extension;
 
