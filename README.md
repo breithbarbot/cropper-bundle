@@ -9,6 +9,7 @@ Bundle based on the javascript plugin [Cropper](https://github.com/fengyuanchen/
 [![Latest Stable Version](https://img.shields.io/packagist/v/breithbarbot/cropper.svg?style=flat-square)](https://gitlab.com/breithbarbot/cropper)
 [![Build Status](https://img.shields.io/travis/breithbarbot/cropper/master.svg?style=flat-square)](https://travis-ci.org/breithbarbot/cropper)
 [![Total Downloads](https://img.shields.io/packagist/dt/breithbarbot/cropper.svg?style=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
+[![License](https://img.shields.io/github/license/breithbarbot/cropper.svg?style=flat-square&colorB=blue)](https://gitlab.com/breithbarbot/cropper/blob/master/LICENSE)
 
 <br>
 
@@ -47,9 +48,3 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 - [Cropper](https://github.com/fengyuanchen/cropper)
 - [Dummy Image](https://github.com/shaneriley/dummy_image)
 
-
-<br>
-
-## License
-
-[![License](https://img.shields.io/github/license/breithbarbot/cropper.svg?style=flat-square&colorB=blue)](https://gitlab.com/breithbarbot/cropper/blob/master/LICENSE)
