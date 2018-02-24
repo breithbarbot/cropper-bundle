@@ -23,14 +23,31 @@ class Crop
     private $msg;
     private $infoFile;
 
-    public function __construct($src, $data, $file, $filename, $path, $folder, $size, $default_folder)
+    /**
+     * Crop constructor.
+     *
+     * @param $src
+     * @param $data
+     * @param $file
+     * @param $filename
+     * @param $path
+     * @param $folder
+     * @param $size
+     * @param $defaultFolder
+     */
+    public function __construct($src, $data, $file, $filename, $path, $folder, $size, $defaultFolder)
     {
         $this->setSrc($src, $filename, $path);
         $this->setData($data);
-        $this->setFile($file, $filename, $path, $folder, $default_folder);
+        $this->setFile($file, $filename, $path, $folder, $defaultFolder);
         $this->crop($this->src, $this->dst, $this->data, $size);
     }
 
+    /**
+     * @param $src
+     * @param $filename
+     * @param $path
+     */
     private function setSrc($src, $filename, $path)
     {
         if (!empty($src)) {
@@ -45,6 +62,9 @@ class Crop
         }
     }
 
+    /**
+     * @param $data
+     */
     private function setData($data)
     {
         if (!empty($data)) {
@@ -52,7 +72,14 @@ class Crop
         }
     }
 
-    private function setFile($file, $filename, $path, $folder, $default_folder)
+    /**
+     * @param $file
+     * @param $filename
+     * @param $path
+     * @param $folder
+     * @param $defaultFolder
+     */
+    private function setFile($file, $filename, $path, $folder, $defaultFolder)
     {
         $errorCode = $file->getError();
 
@@ -74,7 +101,7 @@ class Crop
                             unlink($src);
                         }
 
-                        $this->setInfoFile($file, $filename, $folder, $default_folder, $extension);
+                        $this->setInfoFile($file, $filename, $folder, $defaultFolder, $extension);
 
                         $result = move_uploaded_file($file->getRealPath(), $src);
 
@@ -100,15 +127,26 @@ class Crop
         }
     }
 
+    /**
+     * @param $filename
+     * @param $path
+     */
     private function setDst($filename, $path)
     {
         $this->dst = $path.$filename.$this->extension;
     }
 
-    private function setInfoFile($file, $filename, $folder, $default_folder, $extension)
+    /**
+     * @param $file
+     * @param $filename
+     * @param $folder
+     * @param $defaultFolder
+     * @param $extension
+     */
+    private function setInfoFile($file, $filename, $folder, $defaultFolder, $extension)
     {
         $this->infoFile = [
-            'path' => '/'.$default_folder.'/'.$folder.$filename.$extension,
+            'path' => '/'.$defaultFolder.'/'.$folder.$filename.$extension,
             'name' => $filename.$extension,
             'nameOriginal' => $filename.'.original'.$extension,
             'mime_type' => $file->getMimeType(),
@@ -116,20 +154,26 @@ class Crop
         ];
     }
 
+    /**
+     * @param $src
+     * @param $dst
+     * @param $data
+     * @param $size_data
+     */
     private function crop($src, $dst, $data, $size_data)
     {
         if (!empty($src) && !empty($dst) && !empty($data)) {
             switch ($this->type) {
                 case IMAGETYPE_GIF:
-                    $src_img = imagecreatefromgif($src);
+                    $src_img = @imagecreatefromgif($src);
                     break;
 
                 case IMAGETYPE_JPEG:
-                    $src_img = imagecreatefromjpeg($src);
+                    $src_img = @imagecreatefromjpeg($src);
                     break;
 
                 case IMAGETYPE_PNG:
-                    $src_img = imagecreatefrompng($src);
+                    $src_img = @imagecreatefrompng($src);
                     break;
                 default:
                     $src_img = null;
@@ -216,7 +260,7 @@ class Crop
             $dst_w /= $ratio;
             $dst_h /= $ratio;
 
-            $dst_img = imagecreatetruecolor($dst_img_w, $dst_img_h);
+            $dst_img = @imagecreatetruecolor($dst_img_w, $dst_img_h);
 
             // Add transparent background to destination image
             imagefill($dst_img, 0, 0, imagecolorallocatealpha($dst_img, 0, 0, 0, 127));

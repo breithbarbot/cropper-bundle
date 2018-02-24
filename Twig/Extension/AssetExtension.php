@@ -33,7 +33,7 @@ class AssetExtension extends \Twig_Extension
     /**
      * {@inheritdoc}
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
             new \Twig_SimpleFunction('breithbarbot_cropper_asset', [$this, 'getPath']),
@@ -43,9 +43,9 @@ class AssetExtension extends \Twig_Extension
     /**
      * @param $entity
      *
-     * @return bool
+     * @return string
      */
-    public function getPath($entity)
+    public function getPath($entity): string
     {
         if (!empty($entity)) {
             return $this->packages->getUrl($entity->getPath());

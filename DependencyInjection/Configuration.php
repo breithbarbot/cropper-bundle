@@ -14,6 +14,9 @@ namespace Breithbarbot\CropperBundle\DependencyInjection;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
+/**
+ *  Configuration tree builder.
+ */
 class Configuration implements ConfigurationInterface
 {
     /**
@@ -21,7 +24,7 @@ class Configuration implements ConfigurationInterface
      *
      * @throws \RuntimeException
      */
-    public function getConfigTreeBuilder()
+    public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('breithbarbot_cropper');
