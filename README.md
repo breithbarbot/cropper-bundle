@@ -6,8 +6,8 @@
 
 Bundle based on the javascript plugin [Cropper](https://github.com/fengyuanchen/cropper) adapted for use under symfony 3
 
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/98a8656d25c04e82bf9601e757dc6279)](https://app.codacy.com/app/breithbarbot/cropper?utm_source=github.com&utm_medium=referral&utm_content=breithbarbot/cropper&utm_campaign=badger)
 [![Latest Stable Version](https://img.shields.io/packagist/v/breithbarbot/cropper.svg?style=flat-square)](https://gitlab.com/breithbarbot/cropper)
+[![Codacy grade](https://img.shields.io/codacy/grade/98a8656d25c04e82bf9601e757dc6279.svg?style=flat-square)](https://www.codacy.com/app/breithbarbot/cropper)
 [![Build Status](https://img.shields.io/travis/breithbarbot/cropper/master.svg?style=flat-square)](https://travis-ci.org/breithbarbot/cropper)
 [![Total Downloads](https://img.shields.io/packagist/dt/breithbarbot/cropper.svg?style=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
 [![License](https://img.shields.io/github/license/breithbarbot/cropper.svg?style=flat-square&colorB=blue)](https://gitlab.com/breithbarbot/cropper/blob/master/LICENSE)
