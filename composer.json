@@ -3,7 +3,7 @@
   "type": "symfony-bundle",
   "description": "Simple cropping tool for symfony",
   "keywords": ["crop", "cropping", "image", "avatar", "upload", "symfony-bundle", "form-types", "symfony", "php"],
-  "homepage": "https://gitlab.com/breithbarbot/cropper",
+  "homepage": "https://github.com/breithbarbot/cropper",
   "license": "MIT",
   "authors": [
     {
@@ -49,6 +49,6 @@
     }
   },
   "support": {
-    "docs": "https://gitlab.com/breithbarbot/cropper/blob/master/Resources/doc/index.md"
+    "docs": "https://github.com/breithbarbot/cropper/blob/master/Resources/doc/index.md"
   }
 }
