@@ -2,16 +2,8 @@
 
 <br>
 
-### Use `breithbarbot_cropper_asset` function
-```twig
-{{ breithbarbot_cropper_asset(your_entity.your_field_name) }}
-# Or
-<img class="img-responsive" src="{{ breithbarbot_cropper_asset(your_entity.your_field_name) }}" alt="{{ your_entity.your_field_name }}">
-```
+### Use `asset` function
 
-<br>
-
-### Or use `asset` function
 ```twig
 {{ asset(your_entity.your_field_name.path) }}
 # Or
