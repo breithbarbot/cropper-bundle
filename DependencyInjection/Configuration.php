@@ -36,7 +36,7 @@ class Configuration implements ConfigurationInterface
                                 ->isRequired()
                                 ->children()
                                     ->scalarNode('add_path')->isRequired()->cannotBeEmpty()->end()
-                                    ->scalarNode('remove_path')->end()
+                                    ->scalarNode('delete_path')->end()
                                 ->end()
                             ->end()
                             ->scalarNode('width')->defaultValue(1280)->end()
