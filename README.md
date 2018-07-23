@@ -33,6 +33,7 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 
 ## Coming soon...
 * Ability to delete images => 75%
+* Add tests
 * ...
 
 <br>
