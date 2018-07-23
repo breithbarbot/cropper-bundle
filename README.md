@@ -3,9 +3,13 @@
 
 Bundle based on the javascript plugin [Cropper](https://github.com/fengyuanchen/cropper) adapted for use under Symfony
 
-[![Latest Stable Version](https://poser.pugx.org/breithbarbot/cropper/v/stable?format=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
-[![Latest Unstable Version](https://poser.pugx.org/breithbarbot/cropper/v/unstable?format=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
-[![Total Downloads](https://poser.pugx.org/breithbarbot/cropper/downloads?format=flat-square)](https://packagist.org/packages/breithbarbot/cropper)
+[![Build Status](https://travis-ci.org/breithbarbot/cropper.svg?branch=master)](https://travis-ci.org/breithbarbot/cropper)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/7c64e04f795e49f681b823b7461c41c6)](https://www.codacy.com/app/breithbarbot/cropper)
+[![Latest Stable Version](https://poser.pugx.org/breithbarbot/cropper/v/stable)](https://packagist.org/packages/breithbarbot/cropper)
+[![Total Downloads](https://poser.pugx.org/breithbarbot/cropper/downloads)](https://packagist.org/packages/breithbarbot/cropper)
+[![Latest Unstable Version](https://poser.pugx.org/breithbarbot/cropper/v/unstable)](https://packagist.org/packages/breithbarbot/cropper)
+[![License](https://poser.pugx.org/breithbarbot/cropper/license)](https://packagist.org/packages/breithbarbot/cropper)
+[![composer.lock](https://poser.pugx.org/breithbarbot/cropper/composerlock)](https://packagist.org/packages/breithbarbot/cropper)
 
 <br>
 
