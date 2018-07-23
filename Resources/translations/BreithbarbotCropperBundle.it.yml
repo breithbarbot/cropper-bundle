@@ -1,0 +1,12 @@
+deleteImage: Elimina immagine?
+upload:
+    success: Immagine registrata con successo
+    error: Si è verificato un errore durante il salvataggio dell'immagine
+croppingTool: Strumento di ritaglio
+form:
+    input: Seleziona un'immagine
+    title: Titolo
+preview: Anteprima immagine
+modal:
+    close: Chiudi
+    save: Salvare

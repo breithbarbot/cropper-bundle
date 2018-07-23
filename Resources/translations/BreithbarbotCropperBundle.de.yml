@@ -1,0 +1,12 @@
+deleteImage: Bild löschen?
+upload:
+    success: Erfolgreich gespeichertes Bild
+    error: Beim Speichern des Bildes ist ein Fehler aufgetreten.
+croppingTool: Cropping tool
+form:
+    input: Wählen Sie ein Bild
+    title: Titel
+preview: Bildvorschau
+modal:
+    close: Schließen
+    save: Speichern
