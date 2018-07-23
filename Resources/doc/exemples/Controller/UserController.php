@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the breithbarbot.name package.
+ * This file is part of the Cropper package.
  *
  * (c) Breith Barbot <b.breith@gmail.com>
  *
@@ -18,6 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+
 // [...]
 
 /**
@@ -54,14 +55,11 @@ class UserController extends Controller
 
         $avatar_input = $request->files->get('avatar_input');
         if (null !== $avatar_input) {
-
             $name = uniqid($user_id, true).'.'.$avatar_input->guessClientExtension();
 
             $result_avatar_input = $avatar_input->move('/public/uploads/user/avatar', $name);
             if (!empty($result_avatar_input)) {
-
                 try {
-
                     // Set File
                     $file = new File();
                     $file->setFullPath($result_avatar_input->getPathname());
@@ -73,21 +71,17 @@ class UserController extends Controller
                     $file->setLegend($avatar_input->getClientOriginalName());
                     $em->persist($file);
 
-
                     // Set User (avatar)
                     $user->setAvatar($file);
                     $em->persist($user);
 
-
                     $em->flush();
 
                     return new JsonResponse(['return' => true, 'message' => 'Updated!'], 200);
-
                 } catch (\Exception $e) {
                     // Write log & flash message
                     $message = 'Error when updating...';
                 }
-
             } else {
                 $message = 'Error during file upload';
             }
