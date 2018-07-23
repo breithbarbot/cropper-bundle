@@ -57,10 +57,10 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'modal.close'|trans }}</button>
-                        <button type="submit" class="btn btn-primary">{{ 'modal.save'|trans }}</button>
                         {% if current_mapping.routes.delete_path is defined %}
                             <button type="button" class="avatar-remove btn btn-danger">Supprimer</button>
                         {% endif %}
+                        <button type="submit" class="btn btn-primary">{{ 'modal.save'|trans }}</button>
                     </div>
                 </form>
             </div>
