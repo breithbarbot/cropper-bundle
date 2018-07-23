@@ -1,25 +1,43 @@
 ##########################################################
-# Copyright (c) 2017 Breith Barbot <b.breith@gmail.com>. #
-# Source : https://gitlab.com/snippets/1672174           #
+# Copyright (c) 2018 Breith Barbot <b.breith@gmail.com>. #
+# Source : https://gitlab.com/snippets/1700809           #
+# For : Symfony Flex                                     #
 ##########################################################
 
-
-# Managed by Composer #
-#######################
+###> symfony/framework-bundle ###
+/.env
+/public/bundles/
+/var/
 /vendor/
-/composer.lock
+###< symfony/framework-bundle ###
 
+###> symfony/webpack-encore-pack ###
+/node_modules/
+/public/build/
+npm-debug.log
+yarn-error.log
+###< symfony/webpack-encore-pack ###
 
-# Managed by PHP Coding Standards Fixer #
-#########################################
+###> friendsofphp/php-cs-fixer ###
+.php_cs
 .php_cs.cache
+###< friendsofphp/php-cs-fixer ###
 
+###> symfony/phpunit-bridge ###
+.phpunit
+/phpunit.xml
+###< symfony/phpunit-bridge ###
 
-# Assets managed by yarn #
-##########################
-node_modules/
-/yarn.lock
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###
 
+# Assets managed by yarn and user uploads #
+############################################
+/public/uploads/*
+!/public/uploads/.gitignore
+!/public/uploads/**/.gitignore
+/web/assets/plugins/**/examples
 
 # OS generated files #
 ######################
@@ -31,8 +49,7 @@ node_modules/
 ehthumbs.db
 Thumbs.db
 
-
-# Idea files #
-##############
+# Custom #
+##########
 /.idea/
 /*.iml

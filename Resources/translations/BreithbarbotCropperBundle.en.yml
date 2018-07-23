@@ -1,1 +1,12 @@
-deleteImage: Remove image
+deleteImage: Delete image?
+upload:
+    success: Image saved successfully
+    error: An error occurred when saving the image
+croppingTool: Cropping tool
+form:
+    input: Select an image
+    title: Title
+preview: Image preview
+modal:
+    close: Close
+    save: Save

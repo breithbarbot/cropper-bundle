@@ -1,62 +1,66 @@
 {% set current_mapping = breithbarbot_cropper_parameter('breithbarbot_cropper.mappings')[mapping] %}
 {% set identifier = (id is defined and id is not empty) ? '-'~id : '' %}
 
+{% trans_default_domain 'BreithbarbotCropperBundle' %}
+
 {% block cropper_stylesheets %}
-    <link href="{{ asset('bundles/breithbarbotcropper/css/cropper.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('bundles/breithbarbotcropper/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/breithbarbotcropper/plugins/cropper.js/cropper.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('bundles/breithbarbotcropper/css/main.min.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block cropper_modals %}
-    <div class="modal fade" id="avatar-modal{{ identifier }}" aria-hidden="true" aria-labelledby="avatar-modal{{ identifier }}-label" role="dialog">
-        <div class="modal-dialog modal-lg">
+    <div class="modal fade" id="avatar-modal{{ identifier }}" role="dialog" aria-labelledby="avatar-modal{{ identifier }}-label" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form class="avatar-form" action="{{ path('breithbarbot_cropper_crop') }}" enctype="multipart/form-data" method="post">
+                <form class="avatar-form" action="{{ path(current_mapping.routes.add_path) }}" enctype="multipart/form-data" method="post">
                     <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title" id="avatar-modal{{ identifier }}-label">Outil de cropping</h4>
+                        <h5 class="modal-title" id="avatar-modal{{ identifier }}-label">{{ 'croppingTool'|trans }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
                     <div class="modal-body">
                         <div class="avatar-body">
                             <!-- Upload image and data -->
                             <div class="avatar-upload">
-                                <input type="hidden" class="avatar-src" name="avatar_src">
-                                <input type="hidden" class="avatar-data" name="avatar_data">
-
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="avatarInput">Selectionner une image</label>
-                                            <input type="file" class="avatar-input form-control" onchange="previewCropper(this)" id="avatarInput" name="avatar_file" accept="image/x-png,image/gif,image/jpeg">
+                                            <label for="avatar-input">{{ 'form.input'|trans }}</label>
+                                            <input type="file" class="avatar-input form-control" name="avatar_input" accept="image/*">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
-                                            <label for="avatarInputName">Nom de fichier</label>
-                                            <input type="text" id="avatarInputName" class="form-control" name="filename">
+                                            <label for="avatar-title">{{ 'form.title'|trans }}</label>
+                                            <input type="text" class="form-control" name="avatar_title">
                                         </div>
                                     </div>
                                 </div>
-
-                                <input type="hidden" name="mapping" value="{{ mapping }}">
                             </div>
+                            <div class="custom-data"></div>
 
                             <!-- Crop and preview -->
                             <div class="row">
                                 <div class="col-md-9">
-                                    <div class="avatar-wrapper">
+                                    <div class="progress">
+                                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
                                     </div>
+                                    <div class="alert" role="alert"></div>
+                                    <div class="avatar-wrapper"></div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="avatar-preview" style="height: auto !important;">
-                                        <img src="" height="200" alt="Aperçu de l’image...">
-                                    </div>
+                                    <div class="avatar-preview" title="{{ 'preview'|trans }}"></div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                        <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'modal.close'|trans }}</button>
+                        <button type="submit" class="btn btn-primary">{{ 'modal.save'|trans }}</button>
+                        {% if current_mapping.routes.remove_path is defined %}
+                            <button type="button" class="avatar-remove btn btn-danger">Supprimer</button>
+                        {% endif %}
                     </div>
                 </form>
             </div>
@@ -65,119 +69,162 @@
 {% endblock %}
 
 {% block cropper_javascripts %}
-    <script src="{{ asset('bundles/breithbarbotcropper/js/cropper.min.js') }}"></script>
-    <script src="{{ asset('bundles/breithbarbotcropper/js/dummy_image.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+    <script src="{{ asset('bundles/breithbarbotcropper/plugins/cropper.js/cropper.min.js') }}"></script>
+    <script src="{{ asset('bundles/breithbarbotcropper/plugins/dummy_image.js') }}"></script>
     <script>
-        $(document).ready(function () {
+        document.addEventListener('DOMContentLoaded', function () {
+            var image;
+            var input = document.querySelector('#avatar-modal{{ identifier }} [type=file]');
+            var progress = $('.avatar-body .progress');
+            var progressBar = $('.avatar-body .progress-bar');
+            var alert = $('.avatar-body .alert');
+            var modal = $('#avatar-modal{{ identifier }}');
+            var cropper;
+            var cropperOption = {
+                aspectRatio   : {{ current_mapping.ratio }},
+                viewMode      : 1,
+                wheelZoomRatio: 0.03,
+                autoCropArea  : 1,
+                preview       : document.querySelector('.avatar-preview')
+            };
 
-            // Initializing Cropper
-            $('#avatar-modal{{ identifier }}').on('shown.bs.modal', function () {
-                var $image = $('.avatar-wrapper img');
-                var $preview = $('.avatar-preview');
-                var cropBoxData;
-                var canvasData;
+            input.addEventListener('change', function (e) {
+                var files = e.target.files;
+                var done = function (url) {
+                    input.value = '';
+                    image.src = url;
 
-                $image.cropper({
-                    aspectRatio   : {{ current_mapping.ratio }},
-                    wheelZoomRatio: 0.03,
-                    autoCropArea  : 1,
-                    preview       : $preview,
-                    crop          : function (e) {
-                        var json = [
-                            '{"x":' + e.x,
-                            '"y":' + e.y,
-                            '"height":' + e.height,
-                            '"width":' + e.width,
-                            '"rotate":' + e.rotate + '}'
-                        ].join();
+                    cropper.destroy();
+                    cropper = null;
+                    cropper = new Cropper(image, cropperOption);
 
-                        $('.avatar-data').val(json);
+                    alert.hide();
+                };
+                var reader;
+                var file;
+                var url;
+
+                if (files && files.length > 0) {
+                    file = files[0];
+
+                    if (URL) {
+                        done(URL.createObjectURL(file));
+                    } else if (FileReader) {
+                        reader = new FileReader();
+                        reader.onload = function (e) {
+                            done(reader.result);
+                        };
+                        reader.readAsDataURL(file);
                     }
-                });
-            }).on('hidden.bs.modal', function () {
-                // Destroy cropper
-                $('.avatar-wrapper img').cropper('destroy');
-
-                // Reset form
-                $('.avatar-form')[0].reset();
+                }
             });
-        });
 
-        // Initializing elements
-        function loadCropper(elem) {
+            modal.on('show.bs.modal', function () {
+                document.querySelector('.avatar-form').reset();
+                alert.removeClass('alert-success alert-warning').hide();
+                document.querySelector('#avatar-modal{{ identifier }} [type=submit]').disabled = false;
+            }).on('shown.bs.modal', function () {
+                image = document.querySelector('.avatar-wrapper img');
+                cropper = new Cropper(image, cropperOption);
+            }).on('hidden.bs.modal', function () {
+                cropper.destroy();
+                cropper = null;
+            });
 
-            // Variable
-            $avatarModal = $('#avatar-modal{{ identifier }}');
+            document.querySelector('#avatar-modal{{ identifier }} form').addEventListener('submit', function (e) {
 
-            // Closure
-            $elem = $(elem);
-
-            // Set current image
-            $avatarModal.find('.avatar-wrapper').empty().html('<img src="' + $elem.find('img').attr('src') + '" />');
-
-            // Open the modal
-            $avatarModal.modal('show');
-
-            // Processing the cropped image
-            $avatarModal.find('form').on('submit', function (e) {
                 e.preventDefault();
 
-                $.ajax({
-                    contentType: false,
-                    processData: false,
-                    data       : new FormData(this),
-                    dataType   : "json",
-                    method     : "POST",
-                    cache      : false,
-                    url        : $avatarModal.find('form').attr('action'),
-                    success    : function (response) {
-                        if (response.state === 200) {
-                            $elem.find('[data-id="full_path"]').val(response.result.full_path);
-                            $elem.find('[data-id="path"]').val(response.result.path);
-                            $elem.find('[data-id="name"]').val(response.result.name);
-                            $elem.find('[data-id="mime_type"]').val(response.result.mime_type);
-                            $elem.find('[data-id="size"]').val(response.result.size);
+                var avatar = document.querySelector('.avatar-view > img');
+                var initialAvatarURL;
+                var canvas;
 
-                            // Set new image cropped
-                            $elem.find('img').attr('src', response.result.path_image);
+                if (cropper) {
+                    canvas = cropper.getCroppedCanvas({
+                        width : {{ current_mapping.width }},
+                        height: {{ current_mapping.height }},
+                    });
+                    initialAvatarURL = avatar.src;
+                    avatar.src = canvas.toDataURL();
+                    progress.show();
+                    canvas.toBlob(function (blob) {
 
-                            // Reset form
-                            $('.avatar-form')[0].reset();
+                        var formData = new FormData();
+                        var avatar_title = document.querySelector('#avatar-modal{{ identifier }} [name=avatar_title]').value;
+                        formData.append('avatar_input', blob, (avatar_title) ? avatar_title : 'avatar');
+                        document.querySelectorAll('#avatar-modal{{ identifier }} .custom-data > input').forEach(function (item) {
+                            formData.append(item.name, item.value);
+                        })
 
-                            // Close the modal
-                            $avatarModal.modal('hide');
-                        } else {
-                            alert('Une erreur s\'est produite');
-                        }
-                    }, error   : function () {
-                        console.log("Erreur lors de la lecture des données");
-                    }
-                });
+                        $.ajax(document.querySelector('#avatar-modal{{ identifier }} form').action, {
+                            method     : 'POST',
+                            data       : formData,
+                            processData: false,
+                            contentType: false,
 
+                            xhr: function () {
+                                var xhr = new XMLHttpRequest();
+
+                                xhr.upload.onprogress = function (e) {
+                                    var percent = '0';
+                                    var percentage = '0%';
+
+                                    if (e.lengthComputable) {
+                                        percent = Math.round((e.loaded / e.total) * 100);
+                                        percentage = percent + '%';
+                                        progressBar.width(percentage).attr('aria-valuenow', percent).text(percentage);
+                                    }
+                                };
+
+                                return xhr;
+                            },
+
+                            success: function (data) {
+                                if (data.return) {
+                                    document.querySelector('#avatar-modal{{ identifier }} [type=submit]').disabled = true;
+                                    alert.show().addClass('alert-success').text('{{ 'upload.success'|trans }}');
+                                    setTimeout(function () {
+                                        $('#avatar-modal{{ identifier }}').modal('hide');
+                                    }, 2000);
+                                } else {
+                                    alert.show().addClass('alert-warning').text(data.message);
+                                }
+                            },
+
+                            error: function () {
+                                avatar.src = initialAvatarURL;
+                                alert.show().addClass('alert-warning').text('{{ 'upload.error'|trans }}');
+                            },
+
+                            complete: function () {
+                                progress.hide();
+                            },
+                        });
+                    });
+                }
             });
 
-        }
+            {% if current_mapping.routes.remove_path is defined %}
+            document.querySelector('.avatar-remove').addEventListener('click', function (e) {
+                e.preventDefault();
 
-        // Cropper preview image
-        function previewCropper(fileInput) {
-
-            var file = fileInput.files[0];
-            var imageType = /image.*/;
-
-            if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    // Replace the image's src and rebuild the cropper.
-                    $('.avatar-wrapper img').cropper('replace', reader.result);
+                if (confirm('Delete image?')) {
+                    $.ajax({
+                        data    : $(this).serialize(),
+                        dataType: "json",
+                        method  : "POST",
+                        url     : "{{ path(current_mapping.routes.remove_path) }}"
+                    }).done(function (data, textStatus, jqXHR) {
+                        if (data.return) {
+                        } else {
+                        }
+                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                        console.log("Erreur lors de la lecture des données");
+                    });
                 }
-
-                if (file) {
-                    reader.readAsDataURL(file);
-                }
-            } else {
-                alert('File not supported!');
-            }
-        }
+            });
+            {% endif %}
+        });
     </script>
 {% endblock %}

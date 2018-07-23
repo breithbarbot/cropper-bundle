@@ -1,1 +1,12 @@
-deleteImage: Supprimer l'image
+deleteImage: Supprimer l'image ?
+upload:
+    success: Image enregistrée avec succès
+    error: Une erreur s'est produite lors de l'enregistrement de l'image
+croppingTool: Outil de cropping
+form:
+    input: Sélectionner une image
+    title: Titre
+preview: Aperçu de l'image
+modal:
+    close: Fermer
+    save: Enregistrer

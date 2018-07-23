@@ -27,7 +27,7 @@ class FormPass implements CompilerPassInterface
         $resources = $container->getParameter('twig.form.resources');
 
         // Check if the template is not already added via config
-        if (!\in_array($template, $resources, true)) {
+        if (!in_array($template, $resources, true)) {
             // If fields.html.twig template is found, insert BreithbarbotCropperBundle:Form:fields.html.twig template after
             // Else i place in first position
             if (false !== ($key = array_search('fields.html.twig', $resources, true))) {
