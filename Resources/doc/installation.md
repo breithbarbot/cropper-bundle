@@ -42,14 +42,14 @@ breithbarbot_cropper:
     mappings:
         user_avatar:
             routes:
-                add_path:    'app_user_avatar_add'
-                delete_path: 'app_user_avatar_delete' # optional
+                path_add:    'app_user_avatar_add'
+                path_delete: 'app_user_avatar_delete' # optional
             width:  400
             height: 400
             ratio:  1
         note_image:
             routes:
-                add_path:    'app_note_image_add'
+                path_add:    'app_note_image_add'
             width:  400
             height: 225
             ratio:  '16/9'
