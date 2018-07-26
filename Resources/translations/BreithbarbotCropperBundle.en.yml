@@ -2,6 +2,9 @@ deleteImage: Delete image?
 upload:
     success: Image saved successfully
     error: An error occurred when saving the image
+delete:
+    success: Image successfully deleted
+    error: An error occurred when deleting the image
 croppingTool: Cropping tool
 form:
     input: Select an image

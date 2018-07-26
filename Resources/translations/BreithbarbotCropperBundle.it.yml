@@ -2,6 +2,9 @@ deleteImage: Elimina immagine?
 upload:
     success: Immagine registrata con successo
     error: Si è verificato un errore durante il salvataggio dell'immagine
+delete:
+    success: Immagine eliminata
+    error: Si è verificato un errore durante l'eliminazione dell'immagine
 croppingTool: Strumento di ritaglio
 form:
     input: Seleziona un'immagine

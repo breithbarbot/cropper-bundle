@@ -2,6 +2,9 @@ deleteImage: Supprimer l'image ?
 upload:
     success: Image enregistrée avec succès
     error: Une erreur s'est produite lors de l'enregistrement de l'image
+delete:
+    success: Image supprimée avec succès
+    error: Une erreur s'est produite lors de la suppression de l'image
 croppingTool: Outil de cropping
 form:
     input: Sélectionner une image
