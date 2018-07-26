@@ -1,6 +1,9 @@
 {% trans_default_domain 'BreithbarbotCropperBundle' %}
 
 {% block breithbarbot_cropper_bundle_cropper_type_widget %}
+
+    {% set identifier = (form.children._identifier is defined and form.children._identifier.vars.value is not empty) ? '-'~form.children._identifier.vars.value : '' %}
+
     {% spaceless %}
         <div class="avatar-view" title="{{ 'croppingTool'|trans }}">
             <img class="img-responsive img-thumbnail" src="{% if form.vars.value is not null %}{{ asset(form.vars.value.path) }}{% else %}/placeholder/{{ form._width.vars.value~'x'~form._height.vars.value }}{% endif %}" alt="Image cropped">
@@ -16,7 +19,7 @@
                 // Initializing cropper modal
                 $('.avatar-view').on('click', function (e) {
                     // Variable
-                    $avatarModal = $('#avatar-modal');
+                    $avatarModal = $('#avatar-modal{{ identifier }}');
 
                     // Closure
                     $elem = $(this);
@@ -24,7 +27,7 @@
                     // Set current image
                     $avatarModal.find('.avatar-wrapper').empty().html('<img src="' + $elem.find('img').attr('src') + '" />');
 
-                    // Set custom data
+                    // Set additional data
                     {% for key, item in form.children %}
                         {% if key not in ['_width', '_height'] %}
                             {% for key, item in item.vars.attr %}

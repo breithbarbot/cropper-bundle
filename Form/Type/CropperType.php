@@ -40,28 +40,18 @@ class CropperType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        foreach ($options['custom_data'] as $key => $value) {
+        foreach ($options['additional_data'] as $key => $value) {
             $builder->add($key, HiddenType::class, ['mapped' => false, 'attr' => [$key => $value]]);
         }
-
-        $builder->addEventListener(FormEvents::PRE_SUBMIT, [$this, 'onPreSubmit']);
 
         if (!empty($options['mapped'])) {
             $mapping = $this->container->getParameter('breithbarbot_cropper.mappings')[$options['mapping']];
             $builder->add('_width', HiddenType::class, ['mapped' => false, 'data' => $mapping['width']]);
             $builder->add('_height', HiddenType::class, ['mapped' => false, 'data' => $mapping['height']]);
         }
-    }
 
-    /**
-     * @param FormEvent $event
-     */
-    public function onPreSubmit(FormEvent $event)
-    {
-        $data = $event->getData();
-
-        if (!$data) {
-            return;
+        if (!empty($options['identifier'])) {
+            $builder->add('_identifier', HiddenType::class, ['mapped' => false, 'data' => $options['identifier']]);
         }
     }
 
@@ -72,7 +62,8 @@ class CropperType extends AbstractType
     {
         $resolver->setDefaults([
             'mapping' => null,
-            'custom_data' => [],
+            'additional_data' => [],
+            'identifier' => null,
         ]);
     }
 

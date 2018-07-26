@@ -12,7 +12,7 @@
     <div class="modal fade" id="avatar-modal{{ identifier }}" role="dialog" aria-labelledby="avatar-modal{{ identifier }}-label" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
-                <form class="avatar-form" action="{{ path(current_mapping.routes.add_path) }}" enctype="multipart/form-data" method="post">
+                <form class="avatar-form" action="{{ path(current_mapping.routes.path_add) }}" enctype="multipart/form-data" method="post">
                     <div class="modal-header">
                         <h5 class="modal-title" id="avatar-modal{{ identifier }}-label">{{ 'croppingTool'|trans }}</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="custom-data"></div>
+                            <div class="additional-data"></div>
 
                             <!-- Crop and preview -->
                             <div class="row">
@@ -57,7 +57,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'modal.close'|trans }}</button>
-                        {% if current_mapping.routes.delete_path is defined %}
+                        {% if current_mapping.routes.path_delete is defined %}
                             <button type="button" class="avatar-remove btn btn-danger">Supprimer</button>
                         {% endif %}
                         <button type="submit" class="btn btn-primary">{{ 'modal.save'|trans }}</button>
@@ -153,7 +153,7 @@
                         var formData = new FormData();
                         var avatar_title = document.querySelector('#avatar-modal{{ identifier }} [name=avatar_title]').value;
                         formData.append('avatar_input', blob, (avatar_title) ? avatar_title : 'avatar');
-                        document.querySelectorAll('#avatar-modal{{ identifier }} .custom-data > input').forEach(function (item) {
+                        document.querySelectorAll('#avatar-modal{{ identifier }} .additional-data > input').forEach(function (item) {
                             formData.append(item.name, item.value);
                         })
 
@@ -205,7 +205,7 @@
                 }
             });
 
-            {% if current_mapping.routes.delete_path is defined %}
+            {% if current_mapping.routes.path_delete is defined %}
             document.querySelector('.avatar-remove').addEventListener('click', function (e) {
                 e.preventDefault();
 
@@ -214,7 +214,7 @@
                         data    : $(this).serialize(),
                         dataType: "json",
                         method  : "POST",
-                        url     : "{{ path(current_mapping.routes.delete_path) }}"
+                        url     : "{{ path(current_mapping.routes.path_delete) }}"
                     }).done(function (data, textStatus, jqXHR) {
                         if (data.return) {
                         } else {
