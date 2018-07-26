@@ -44,7 +44,9 @@ class UserController extends Controller
 
         $em = $this->getDoctrine()->getManager();
 
+        // From additioanl data
         $user_id = (int) $request->request->get('user_id');
+
         // Get user
         $user = $em->find(User::class, $user_id);
 
@@ -62,13 +64,8 @@ class UserController extends Controller
                 try {
                     // Set File
                     $file = new File();
-                    $file->setFullPath($result_avatar_input->getPathname());
                     $file->setPath(str_replace('\\', '/', str_replace($this->getParameter('kernel.project_dir').'/public', '', $result_avatar_input->getPathname())));
                     $file->setName($name);
-                    $file->setMimeType(mime_content_type($result_avatar_input->getPathname()));
-                    $file->setSize($result_avatar_input->getSize());
-                    $file->setTitle($avatar_input->getClientOriginalName());
-                    $file->setLegend($avatar_input->getClientOriginalName());
                     $em->persist($file);
 
                     // Set User (avatar)
