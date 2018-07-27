@@ -37,7 +37,7 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 ## Coming soon...
 * Improve JS script (Fully ES6?)
 * Add tests
-* ...
+* Add demonstration page
 
 <br>
 
