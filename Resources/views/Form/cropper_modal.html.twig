@@ -183,7 +183,7 @@
                             success: function (data) {
                                 if (data.return) {
                                     document.querySelector('#avatar-modal{{ identifier }} [type=submit]').disabled = true;
-                                    alert.show().addClass('alert-success').text('{{ 'upload.success'|trans }}');
+                                    alert.show().addClass('alert-success').text(data.message);
                                     setTimeout(function () {
                                         $('#avatar-modal{{ identifier }}').modal('hide');
                                     }, 2000);
@@ -209,7 +209,9 @@
             document.querySelector('.avatar-remove').addEventListener('click', function (e) {
                 e.preventDefault();
 
-                if (confirm('Delete image?')) {
+                var avatar = document.querySelector('.avatar-view > img');
+
+                if (confirm('Remove image?')) {
                     $.ajax({
                         data    : $(this).serialize(),
                         dataType: "json",
@@ -217,10 +219,16 @@
                         url     : "{{ path(current_mapping.routes.path_delete) }}"
                     }).done(function (data, textStatus, jqXHR) {
                         if (data.return) {
+                            alert.show().addClass('alert-success').text(data.message);
+                            setTimeout(function () {
+                                avatar.src = '/placeholder/{{ current_mapping.width ~'x'~current_mapping.height }}';
+                                $('#avatar-modal{{ identifier }}').modal('hide');
+                            }, 2000);
                         } else {
+                            alert.show().addClass('alert-warning').text(data.message);
                         }
                     }).fail(function (jqXHR, textStatus, errorThrown) {
-                        console.log("Erreur lors de la lecture des données");
+                        alert.show().addClass('alert-warning').text('{{ 'delete.error'|trans }}');
                     });
                 }
             });

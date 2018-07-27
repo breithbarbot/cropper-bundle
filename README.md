@@ -35,8 +35,7 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 <br>
 
 ## Coming soon...
-* Ability to delete images => 75%
-* Improve JS script
+* Improve JS script (Fully ES6?)
 * Add tests
 * ...
 

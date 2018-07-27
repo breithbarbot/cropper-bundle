@@ -36,6 +36,13 @@
                         {% endif %}
                     {% endfor %}
 
+                    // Show / Hide remove button
+                    {% if data %}
+                        $avatarModal.find('.avatar-remove').show();
+                    {% else %}
+                        $avatarModal.find('.avatar-remove').hide();
+                    {% endif %}
+
                     // Open the cropper modal
                     $avatarModal.modal('show');
                 });
