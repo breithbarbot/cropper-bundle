@@ -1,4 +1,5 @@
 # Cropper
+
 > Simple cropping tool for Symfony
 
 Bundle based on the javascript plugin [Cropper.js](https://github.com/fengyuanchen/cropperjs) adapted for use under Symfony
@@ -22,7 +23,7 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 
 2.0.0 - Complete recasting of the code and simplification
 
-1.1.0 - Update library, add transaltion, improve script, new field, ...
+1.1.0 - Update library, add translation, improve script, new field, ...
 
 1.0.0 - Start of the project ! 🎉🎊
 
@@ -35,6 +36,7 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 <br>
 
 ## Coming soon...
+
 * Improve JS script (Fully ES6?)
 * Add tests
 * Add demonstration page
@@ -42,6 +44,7 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 <br>
 
 ## External library used ❤️
+
 - [Cropper.js](https://github.com/fengyuanchen/cropperjs)
 - [Dummy Image](https://github.com/shaneriley/dummy_image)
 
