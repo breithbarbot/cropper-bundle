@@ -21,11 +21,18 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // [...]
-        $builder->add('avatar', CropperType::class, ['required' => false, 'mapping' => 'user_avatar', 'additional_data' => ['user_id' => 12345], 'label' => false]);
+        $builder->add('avatar', CropperType::class, ['required' => false, 'mapping' => 'user_avatar', 'additional_data' => ['user_id' => 12345, 'foo' => 'bar'], 'label' => false]);
         // [...]
     }
 }
 ```
+
+Parameters :
+* mapping : `'user_avatar'`
+* additional_data (optional) : `['user_id' => 12345, 'foo' => 'bar']`
+* label (optional) : `false`
+
+<br>
 
 > For multiple cropping on the same page : [Multiple Usage Instructions](usage-multiple.md)
 
@@ -37,8 +44,11 @@ Include modal with params:
 ```twig
 {% include 'BreithbarbotCropperBundle:Form:cropper_modal.html.twig' with {'mapping': 'user_avatar'} %}
 ```
+
 Parameters :
-* mapping : user_avatar
+* mapping : `'user_avatar'`
+
+<br>
 
 > For multiple cropping on the same page : [Multiple Usage Instructions](usage-multiple.md)
 
@@ -47,7 +57,7 @@ Parameters :
 ### Step 3: Add form field
 
 ```twig
-{{ form_row(form.avatar, { 'label':'Avatar' }) }}
+{{ form_row(form.avatar) }}
 ```
 
 <br>
