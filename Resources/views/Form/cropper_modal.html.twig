@@ -211,23 +211,24 @@
 
                 var avatar = document.querySelector('.avatar-view > img');
 
-                if (confirm('Remove image?')) {
+                if (confirm('{{ 'deleteImage'|trans }}')) {
                     $.ajax({
                         data    : $(this).serialize(),
                         dataType: "json",
                         method  : "POST",
                         url     : "{{ path(current_mapping.routes.path_delete) }}"
-                    }).done(function (data, textStatus, jqXHR) {
+                    }).done(function (data) {
                         if (data.return) {
                             alert.show().addClass('alert-success').text(data.message);
                             setTimeout(function () {
                                 avatar.src = '/placeholder/{{ current_mapping.width ~'x'~current_mapping.height }}';
+                                DummyImage.generate();
                                 $('#avatar-modal{{ identifier }}').modal('hide');
                             }, 2000);
                         } else {
                             alert.show().addClass('alert-warning').text(data.message);
                         }
-                    }).fail(function (jqXHR, textStatus, errorThrown) {
+                    }).fail(function () {
                         alert.show().addClass('alert-warning').text('{{ 'delete.error'|trans }}');
                     });
                 }
