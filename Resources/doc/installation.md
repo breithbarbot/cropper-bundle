@@ -12,7 +12,7 @@
 Require the bundle with composer:
 
 ```bash
-composer require breithbarbot/cropper
+composer req breithbarbot/cropper
 ```
 
 <br>
@@ -33,7 +33,7 @@ return [
 <br>
 
 ### Step 3: Configure the BreithbarbotCropperBundle
-Configure the bundle:
+Example configure the bundle:
 
 ```yaml
 # config/packages/breithbarbot_cropper.yaml
