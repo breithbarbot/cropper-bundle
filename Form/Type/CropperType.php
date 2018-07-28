@@ -19,7 +19,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class CropperType extends AbstractType
 {
     /**
-     * @var
+     * @var $container
      */
     private $container;
 
