@@ -96,7 +96,6 @@ class CropperController extends Controller
                         $message = 'Error during file upload...';
                     }
                 } else {
-                    $status = 400;
                     $message = 'File does not exist!';
                 }
             }
