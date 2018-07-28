@@ -42,14 +42,14 @@ breithbarbot_cropper:
     mappings:
         user_avatar:
             routes:
-                path_add:    'app_user_avatar_add'
-                path_delete: 'app_user_avatar_delete' # optional
+                path_add:    'app_cropper_avatar_add'
+                path_delete: 'app_cropper_avatar_delete' # optional (For add delete button)
             width:  400
             height: 400
             ratio:  1
         note_image:
             routes:
-                path_add:    'app_note_image_add'
+                path_add:    'app_cropper_note_add'
             width:  400
             height: 225
             ratio:  '16/9'
@@ -58,7 +58,7 @@ breithbarbot_cropper:
 <br>
 
 ### Step 4: Install the assets
-Used to install multimedia files in the web/ folder:
+Used to install multimedia files in the `public/bundles/` folder:
 
 ```bash
 php bin/console assets:install --symlink

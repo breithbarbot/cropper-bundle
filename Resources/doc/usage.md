@@ -63,9 +63,9 @@ Parameters :
 <br>
 
 ### Step 4: Logic from controller
-Exemple script from controller:
+Example script from controller:
 
-=> [UserController.php](exemples/Controller/UserController.php)
+=> [CropperController.php](exemples/Controller/CropperController.php)
 
 <br>
 
