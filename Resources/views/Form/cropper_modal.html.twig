@@ -155,7 +155,7 @@
                         formData.append('avatar_input', blob, (avatar_title) ? avatar_title : 'avatar');
                         document.querySelectorAll('#avatar-modal{{ identifier }} .additional-data > input').forEach(function (item) {
                             formData.append(item.name, item.value);
-                        })
+                        });
 
                         $.ajax(document.querySelector('#avatar-modal{{ identifier }} form').action, {
                             method     : 'POST',
@@ -173,66 +173,61 @@
                                     if (e.lengthComputable) {
                                         percent = Math.round((e.loaded / e.total) * 100);
                                         percentage = percent + '%';
-                                        progressBar.width(percentage).attr('aria-valuenow', percent).text(percentage);
+                                        progressBar.width(percentage).attr('aria-valuenow', percent).html(percentage);
                                     }
                                 };
 
                                 return xhr;
-                            },
+                            }
 
-                            success: function (data) {
-                                if (data.return) {
-                                    document.querySelector('#avatar-modal{{ identifier }} [type=submit]').disabled = true;
-                                    alert.show().addClass('alert-success').text(data.message);
-                                    setTimeout(function () {
-                                        $('#avatar-modal{{ identifier }}').modal('hide');
-                                    }, 2000);
-                                } else {
-                                    alert.show().addClass('alert-warning').text(data.message);
-                                }
-                            },
-
-                            error: function () {
-                                avatar.src = initialAvatarURL;
-                                alert.show().addClass('alert-warning').text('{{ 'upload.error'|trans }}');
-                            },
-
-                            complete: function () {
-                                progress.hide();
-                            },
+                        }).done(function (data) {
+                            if (data.return) {
+                                document.querySelector('#avatar-modal{{ identifier }} [type=submit]').disabled = true;
+                                alert.show().addClass('alert-success').removeClass('alert-warning').html(data.message);
+                                setTimeout(function () {
+                                    $('#avatar-modal{{ identifier }}').modal('hide');
+                                }, 2000);
+                            } else {
+                                alert.show().addClass('alert-warning').html(data.message);
+                            }
+                        }).fail(function (jqXHR) {
+                            avatar.src = initialAvatarURL;
+                            alert.show().addClass('alert-warning').html('{{ 'upload.error'|trans }}<br>'+jqXHR.responseJSON.message);
+                        }).complete(function () {
+                            progress.hide();
                         });
                     });
                 }
             });
 
             {% if current_mapping.routes.path_delete is defined %}
-            document.querySelector('.avatar-remove').addEventListener('click', function (e) {
-                e.preventDefault();
+                document.querySelector('.avatar-remove').addEventListener('click', function (e) {
+                    e.preventDefault();
 
-                var avatar = document.querySelector('.avatar-view > img');
+                    var avatar = document.querySelector('.avatar-view > img');
 
-                if (confirm('{{ 'deleteImage'|trans }}')) {
-                    $.ajax({
-                        data    : $(this).serialize(),
-                        dataType: "json",
-                        method  : "POST",
-                        url     : "{{ path(current_mapping.routes.path_delete) }}"
-                    }).done(function (data) {
-                        if (data.return) {
-                            alert.show().addClass('alert-success').text(data.message);
-                            setTimeout(function () {
-                                avatar.src = '/placeholder/{{ current_mapping.width ~'x'~current_mapping.height }}';
-                                DummyImage.generate();
-                                $('#avatar-modal{{ identifier }}').modal('hide');
-                            }, 2000);
-                        } else {
-                            alert.show().addClass('alert-warning').text(data.message);
-                        }
-                    }).fail(function () {
-                        alert.show().addClass('alert-warning').text('{{ 'delete.error'|trans }}');
-                    });
-                }
-            });
+                    if (confirm('{{ 'deleteImage'|trans }}')) {
+                        $.ajax({
+                            data    : $('#avatar-modal{{ identifier }} form').serialize(),
+                            dataType: "json",
+                            method  : "POST",
+                            url     : "{{ path(current_mapping.routes.path_delete) }}"
+                        }).done(function (data) {
+                            if (data.return) {
+                                alert.show().addClass('alert-success').html(data.message);
+                                setTimeout(function () {
+                                    avatar.src = '/placeholder/{{ current_mapping.width ~'x'~current_mapping.height }}';
+                                    DummyImage.generate();
+                                    $('#avatar-modal{{ identifier }}').modal('hide');
+                                }, 2000);
+                            } else {
+                                alert.show().addClass('alert-warning').html(data.message);
+                            }
+                        }).fail(function (jqXHR) {
+                            alert.show().addClass('alert-warning').html('{{ 'delete.error'|trans }}<br>'+jqXHR.responseJSON.message);
+                        });
+                    }
+                });
             {% endif %}
         });
     </script>
