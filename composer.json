@@ -21,7 +21,6 @@
     "symfony/twig-bundle": "^3.4||^4.0"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.10",
     "roave/security-advisories": "dev-master",
     "symfony/phpunit-bridge": "^3.4||^4.0"
   },
