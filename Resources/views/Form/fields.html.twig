@@ -31,7 +31,7 @@
                     {% for key, item in form.children %}
                         {% if key not in ['_width', '_height'] %}
                             {% for key, item in item.vars.attr %}
-                                $avatarModal.find('.custom-data').append('<input type="hidden" name="{{ key }}" value="{{ item }}">');
+                                $avatarModal.find('.additional-data').append('<input type="hidden" name="{{ key }}" value="{{ item }}">');
                             {% endfor %}
                         {% endif %}
                     {% endfor %}
