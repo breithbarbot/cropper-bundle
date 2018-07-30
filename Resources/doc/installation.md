@@ -18,7 +18,8 @@ composer req breithbarbot/cropper
 <br>
 
 ### Step 2: Enable the bundle
-Enable the bundle in the bundles.php:
+
+#### For user using Symfony Flex
 
 ```php
 // config/bundles.php
@@ -28,6 +29,23 @@ return [
     Breithbarbot\CropperBundle\BreithbarbotCropperBundle::class => ['all' => true],
     // [...]
 ];
+```
+
+#### For user not using Symfony Flex
+
+```php
+// app/AppKernel.php
+
+class AppKernel extends Kernel
+{
+    public function registerBundles()
+    {
+        return array(
+            // ...
+            new Breithbarbot\CropperBundle\BreithbarbotCropperBundle(),
+        );
+    }
+}
 ```
 
 <br>
@@ -42,11 +60,18 @@ breithbarbot_cropper:
     mappings:
         user_avatar:
             routes:
+                # Your personalized route which will take care of the recording of the image
                 path_add:    'app_cropper_avatar_add'
-                path_delete: 'app_cropper_avatar_delete' # optional (For add delete button)
+
+                # Your custom route that will delete the image + Show the delete button in the modal. (Optional parameter)
+                path_delete: 'app_cropper_avatar_delete'
+
+            # Definition of cropped image properties (width, height and ratio)
             width:  400
             height: 400
             ratio:  1
+
+        # Another example...
         note_image:
             routes:
                 path_add:    'app_cropper_note_add'
