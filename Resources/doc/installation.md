@@ -58,7 +58,7 @@ Example configure the bundle:
 
 breithbarbot_cropper:
     mappings:
-        # A example custom mapping name
+        # An example of a custom mapping name
         user_avatar:
             routes:
                 # A custom route which will take care of saving the image
