@@ -63,9 +63,8 @@ Parameters :
 <br>
 
 ### Step 4: Logic from controller
-Example script from controller:
 
-=> [CropperController.php](exemples/Controller/CropperController.php)
+A example script from controller: [CropperController.php](examples/Controller/CropperController.php)
 
 <br>
 
