@@ -39,7 +39,7 @@ class CropperType extends AbstractType
             $builder->add($key, HiddenType::class, ['mapped' => false, 'attr' => [$key => $value]]);
         }
 
-        if (!empty($options['mapped'])) {
+        if (!empty($options['mapping'])) {
             $mapping = $this->container->getParameter('breithbarbot_cropper.mappings')[$options['mapping']];
             $builder->add('_width', HiddenType::class, ['mapped' => false, 'data' => $mapping['width']]);
             $builder->add('_height', HiddenType::class, ['mapped' => false, 'data' => $mapping['height']]);
