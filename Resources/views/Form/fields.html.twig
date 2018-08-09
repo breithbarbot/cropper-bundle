@@ -10,7 +10,7 @@
         </div>
         {{ form_widget(form.id) }}
 
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous"></script>
+        <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous">\x3C/script>')</script>
         <script>
             $(document).ready(function () {
                 {% if form.vars.value is null %}
@@ -30,6 +30,7 @@
                     $avatarModal.find('.avatar-wrapper').empty().html('<img src="' + $elem.find('img').attr('src') + '" />');
 
                     // Set additional data
+                    $avatarModal.find('.additional-data').html('');
                     {% for key, item in form.children %}
                         {% if key not in ['_width', '_height'] %}
                             {% for key, item in item.vars.attr %}
