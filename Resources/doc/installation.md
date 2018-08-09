@@ -2,9 +2,7 @@
 
 1. Download Cropper Bundle
 2. Enable the bundle
-3. Configure the BreithbarbotCropperBundle
-4. Install the assets
-5. Clear cache
+3. Configure the bundle
 
 <br>
 
@@ -50,12 +48,11 @@ class AppKernel extends Kernel
 
 <br>
 
-### Step 3: Configure the BreithbarbotCropperBundle
+### Step 3: Configure the bundle
 Example configure the bundle:
 
 ```yaml
 # config/packages/breithbarbot_cropper.yaml
-
 breithbarbot_cropper:
     mappings:
         # An example of a custom mapping name
@@ -81,25 +78,7 @@ breithbarbot_cropper:
             ratio:  '16/9'
 ```
 
-[Here is an example of use for the following 2 routes](examples/Controller/CropperController.php): `app_cropper_avatar_add` and `app_cropper_avatar_delete`.
-
-<br>
-
-### Step 4: Install the assets
-Used to install multimedia files in the `public/bundles/` folder:
-
-```bash
-php bin/console assets:install --symlink
-```
-
-<br>
-
-### Step 5: Clear cache
-Clear cache:
-
-```bash
-php bin/console cache:clear
-```
+A example of use for the following 2 routes (`app_cropper_avatar_add` and `app_cropper_avatar_delete`): [CropperController.php](examples/Controller/CropperController.php)
 
 <br>
 

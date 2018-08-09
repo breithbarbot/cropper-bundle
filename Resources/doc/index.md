@@ -2,7 +2,7 @@
 
 Here you will find information on installation procedure and usage instructions.
 
-- **Installation procedure** in 5 steps
+- **Installation procedure** in 3 steps
 - **Usage Instructions** in 4 steps
 
 <br>
