@@ -8,6 +8,7 @@
         <div class="avatar-view" title="{{ 'croppingTool'|trans }}">
             <img class="img-responsive img-thumbnail" src="{% if (form.vars.value is not null) and (form.vars.value.path is defined) %}{{ asset(form.vars.value.path) }}{% else %}/placeholder/{{ form._width.vars.value~'x'~form._height.vars.value }}{% endif %}" alt="Image cropped">
         </div>
+        {{ form_widget(form.id) }}
 
         <script>
             $(document).ready(function () {

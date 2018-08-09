@@ -183,6 +183,7 @@
                         }).done(function (data) {
                             if (data.return) {
                                 document.querySelector('#avatar-modal{{ identifier }} [type=submit]').disabled = true;
+                                document.querySelector('[data-cropper-image-id]').value = data.additional_data.file.id;
                                 alert.show().addClass('alert-success').removeClass('alert-warning').html(data.message);
                                 setTimeout(function () {
                                     $('#avatar-modal{{ identifier }}').modal('hide');
