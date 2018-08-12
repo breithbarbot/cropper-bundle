@@ -21,13 +21,14 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         // [...]
+        // Mapped = "true" if avatar exist
         $edit = (null !== $builder->getData()->getAvatar());
         $builder->add('avatar', CropperType::class, [
             'required' => false,
             'mapped' => $edit,
-            'mapping' => 'user_avatar',
+            'mapping' => 'user_avatar', // From: config/packages/breithbarbot_cropper.yaml
             'additional_data' => [
-                'entity_id' => $builder->getData()->getId(),
+                'entity_id' => $builder->getData()->getId(), // Get current ID
                 // [...]
             ],
             'label' => false

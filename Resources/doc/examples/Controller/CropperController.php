@@ -50,14 +50,17 @@ class CropperController extends Controller
             $em = $this->getDoctrine()->getManager();
 
             // Get data file from request
-            $avatarInput = $request->files->get('avatar_input');
+            $imageInput = $request->files->get('avatar_input');
 
-            if (null !== $avatarInput) {
+            if (null !== $imageInput) {
+
+                // [...] YOUR LOGIC OR A LITE EXAMPLE...
+
                 // Generate filename
-                $name = md5(uniqid(12345, true)).'.'.$avatarInput->guessClientExtension();
+                $name = md5(uniqid(12345, true)).'.'.$imageInput->guessClientExtension();
 
                 // Upload
-                $resultUpload = $avatarInput->move($path, $name);
+                $resultUpload = $imageInput->move($path, $name);
 
                 if (!empty($resultUpload)) {
                     try {
@@ -83,6 +86,9 @@ class CropperController extends Controller
                     $message = 'Error during file upload...';
                     // [...]
                 }
+
+                // [...] END YOUR LOGIC OR A LITE EXAMPLE...
+
             } else {
                 $message = 'File does not exist!';
                 // [...]
@@ -109,7 +115,7 @@ class CropperController extends Controller
         $additionalData = [];
 
         // Custom Variables
-        $entityId = (int) $request->request->get('entity_id');
+        $entityId = $request->request->get('entity_id');
         $class = User::class;
         $nameEntity = 'Avatar';
 
@@ -128,6 +134,9 @@ class CropperController extends Controller
                 $message = 'Entity does not exist!';
             } else {
                 try {
+
+                    // [...] YOUR LOGIC OR A LITE EXAMPLE...
+
                     $getFullPath = $entity->getAvatar()->getFullPath();
 
                     // Remove File entity
@@ -143,6 +152,8 @@ class CropperController extends Controller
                     $em->persist($entity);
 
                     $em->flush();
+
+                    // [...] END YOUR LOGIC OR A LITE EXAMPLE...
 
                     $message = 'Image deleted!';
                     $status = 200;
