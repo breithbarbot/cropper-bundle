@@ -152,7 +152,7 @@
 
                         var formData = new FormData();
                         var avatar_title = document.querySelector('#avatar-modal{{ identifier }} [name=avatar_title]').value;
-                        formData.append('avatar_input', blob, (avatar_title) ? avatar_title : 'avatar');
+                        formData.append('avatar_input', blob, (avatar_title) ? avatar_title : 'image');
                         document.querySelectorAll('#avatar-modal{{ identifier }} .additional-data > input').forEach(function (item) {
                             formData.append(item.name, item.value);
                         });
