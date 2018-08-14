@@ -53,7 +53,6 @@ class CropperController extends Controller
             $imageInput = $request->files->get('avatar_input');
 
             if (null !== $imageInput) {
-
                 // [...] YOUR LOGIC OR A LITE EXAMPLE...
 
                 // Generate filename
@@ -88,7 +87,6 @@ class CropperController extends Controller
                 }
 
                 // [...] END YOUR LOGIC OR A LITE EXAMPLE...
-
             } else {
                 $message = 'File does not exist!';
                 // [...]
@@ -134,7 +132,6 @@ class CropperController extends Controller
                 $message = 'Entity does not exist!';
             } else {
                 try {
-
                     // [...] YOUR LOGIC OR A LITE EXAMPLE...
 
                     $getFullPath = $entity->getAvatar()->getFullPath();
