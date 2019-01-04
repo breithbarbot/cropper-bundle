@@ -23,7 +23,7 @@ class FormPass implements CompilerPassInterface
      */
     public function process(ContainerBuilder $container)
     {
-        $template = 'BreithbarbotCropperBundle:Form:fields.html.twig';
+        $template = '@BreithbarbotCropper/Form/fields.html.twig';
         $resources = $container->getParameter('twig.form.resources');
 
         // Check if the template is not already added via config

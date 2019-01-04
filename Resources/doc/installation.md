@@ -59,7 +59,7 @@ breithbarbot_cropper:
         user_avatar:
             routes:
                 # A custom route which will take care of saving the image
-                path_add:    'app_cropper_avatar_add'
+                path_add: 'app_cropper_avatar_add'
 
                 # Your custom route that will delete the image + Show the delete button in the modal. (Optional parameter)
                 path_delete: 'app_cropper_avatar_delete'
@@ -72,7 +72,7 @@ breithbarbot_cropper:
         # Another example...
         note_image:
             routes:
-                path_add:    'app_cropper_note_add'
+                path_add: 'app_cropper_note_add'
             width:  400
             height: 225
             ratio:  '16/9'

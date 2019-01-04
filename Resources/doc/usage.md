@@ -32,7 +32,8 @@ class UserType extends AbstractType
                 // [...]
             ],
             'label' => false
-            ]);
+            ])
+        ;
         // [...]
     }
 }
@@ -48,7 +49,7 @@ class UserType extends AbstractType
 Include modal with params:
 
 ```twig
-{% include 'BreithbarbotCropperBundle:Form:cropper_modal.html.twig' with {'mapping': 'user_avatar'} %}
+{% include '@BreithbarbotCropper/Form/cropper_modal.html.twig' with {'mapping': 'user_avatar'} %}
 ```
 
 <br>
