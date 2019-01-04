@@ -12,20 +12,20 @@
 namespace App\Controller;
 
 // [...]
-use App\Entity\File;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/user")
  */
-class UserController extends Controller
+class UserController extends AbstractController
 {
     /**
      * Edit user.
      *
-     * @Route("/edit", methods="GET|POST", options={"expose"=true})
+     * @Route("/edit", methods="GET|POST", options={"expose"=true}, name="app_user_edit")
      *
      * @param Request $request
      *
@@ -34,10 +34,8 @@ class UserController extends Controller
     public function edit(Request $request): Response
     {
         // [...]
-
         try {
             $em = $this->getDoctrine()->getManager();
-
             // Set Avatar
             $fileId = $request->request->get('user')['avatar']['id'];
             if (!empty($fileId)) {
@@ -48,15 +46,11 @@ class UserController extends Controller
                 }
                 $entity->setAvatar($em->find(File::class, $fileId));
             }
-
             $em->persist($entity);
             $em->flush();
-
             // [...]
         } catch (\Exception $e) {
             // [...]
         }
-
-        // [...]
     }
 }
