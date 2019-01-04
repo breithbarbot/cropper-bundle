@@ -81,8 +81,10 @@ class CropperController extends AbstractController
                 // [...]
             }
         }
+
         return new JsonResponse(['return' => $return, 'message' => $message, 'additional_data' => $additionalData], $status);
     }
+
     /**
      * Delete an avatar for a user profile.
      *
@@ -137,6 +139,7 @@ class CropperController extends AbstractController
                 }
             }
         }
+
         return new JsonResponse(['return' => $return, 'message' => $message, $additionalData], $status);
     }
 }
