@@ -5,8 +5,8 @@ services:
             - { name: form.type, alias: cropper }
         arguments: ['@service_container']
 
-    breithbarbot.cropper.twig.extension.parameter:
-        class: Breithbarbot\CropperBundle\Twig\Extension\ParameterExtension
-        tags:
-          - { name: twig.extension }
-        arguments: ['@service_container']
+#    breithbarbot.cropper.twig.extension.parameter:
+#        class: Breithbarbot\CropperBundle\Twig\Extension\ParameterExtension
+#        tags:
+#          - { name: twig.extension }
+#        arguments: ['@service_container']
