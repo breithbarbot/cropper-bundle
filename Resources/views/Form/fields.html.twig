@@ -4,7 +4,7 @@
 
     {% set identifier = (form.children._identifier is defined and form.children._identifier.vars.value is not empty) ? '-'~form.children._identifier.vars.value : '' %}
 
-    {% spaceless %}
+    {% apply spaceless %}
         <div class="avatar-view" title="{{ 'croppingTool'|trans }}">
             <img class="img-responsive img-thumbnail" src="{% if (form.vars.value is not null) and (form.vars.value.path is defined) %}{{ asset(form.vars.value.path) }}{% else %}/placeholder/{{ form._width.vars.value~'x'~form._height.vars.value }}{% endif %}" alt="Image cropped">
         </div>
@@ -51,5 +51,5 @@
                 });
             });
         </script>
-    {% endspaceless %}
+    {% endapply %}
 {% endblock %}
