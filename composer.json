@@ -18,7 +18,6 @@
         "symfony/twig-bundle": "4.4.*"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.13",
         "symfony/test-pack": "*"
     },
     "conflict": {
