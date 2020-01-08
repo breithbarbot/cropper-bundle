@@ -12,10 +12,13 @@
 namespace Breithbarbot\CropperBundle\Twig\Extension;
 
 use Symfony\Component\DependencyInjection\Container;
-use Twig_Extension;
-use Twig_SimpleFunction;
+use Twig\Extension\AbstractExtension;
+use Twig\TwigFunction;
 
-class ParameterExtension extends Twig_Extension
+/**
+ * @see https://symfony.com/doc/current/templating/twig_extension.html
+ */
+class ParameterExtension extends AbstractExtension
 {
     private Container $container;
 
@@ -27,19 +30,14 @@ class ParameterExtension extends Twig_Extension
     /**
      * {@inheritdoc}
      */
-    public function getFunctions()
+    public function getFunctions(): array
     {
         return [
-            new Twig_SimpleFunction('breithbarbot_cropper_parameter', [$this, 'getParameter']),
+            new TwigFunction('breithbarbot_cropper_parameter', [$this, 'getParameter']),
         ];
     }
 
-    /**
-     * @param $name
-     *
-     * @return mixed
-     */
-    public function getParameter($name)
+    public function getParameter(string $name): string
     {
         if (!empty($name)) {
             return $this->container->getParameter($name);
@@ -51,7 +49,7 @@ class ParameterExtension extends Twig_Extension
     /**
      * {@inheritdoc}
      */
-    public function getName()
+    public function getName(): string
     {
         return 'breithbarbot_cropper_parameter';
     }
