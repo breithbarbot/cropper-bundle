@@ -21,6 +21,8 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 
 ## Version
 
+3.0.0 - Update library, PHP 7.4 typing, fix potential security vulnerability, ...
+
 2.0.0 - Complete recasting of the code and simplification
 
 1.1.0 - Update library, add translation, improve script, new field, ...
