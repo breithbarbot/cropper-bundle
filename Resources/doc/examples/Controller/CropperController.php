@@ -12,6 +12,7 @@
 namespace App\Controller;
 
 // [...]
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,11 +26,7 @@ class CropperController extends AbstractController
     /**
      * Added an avatar for a user profile.
      *
-     * @Route("/avatar/add", methods="POST", options={"expose"=true}, name="app_cropper_avatar_add")
-     *
-     * @param Request $request
-     *
-     * @return JsonResponse
+     * @Route("/avatar/add", methods="POST", options={"expose": true}, name="app_cropper_avatar_add")
      */
     public function avatarAdd(Request $request): JsonResponse
     {
@@ -67,7 +64,7 @@ class CropperController extends AbstractController
                         $message = $nameEntity.' saved.';
                         $return = true;
                         // [...]
-                    } catch (\Exception $e) {
+                    } catch (Exception $e) {
                         $message = 'An error occurred when updating the '.mb_strtolower($nameEntity).'...';
                         // [...]
                     }
@@ -88,11 +85,7 @@ class CropperController extends AbstractController
     /**
      * Delete an avatar for a user profile.
      *
-     * @Route("/avatar/delete", methods="POST", options={"expose"=true}, name="app_cropper_avatar_delete")
-     *
-     * @param Request $request
-     *
-     * @return JsonResponse
+     * @Route("/avatar/delete", methods="POST", options={"expose": true}, name="app_cropper_avatar_delete")
      */
     public function avatarDelete(Request $request): JsonResponse
     {
@@ -134,7 +127,7 @@ class CropperController extends AbstractController
                     $status = 200;
                     $return = true;
                     // [...]
-                } catch (\Exception $e) {
+                } catch (Exception $e) {
                     $message = 'An error occurred when delete the '.mb_strtolower($nameEntity).'...';
                 }
             }

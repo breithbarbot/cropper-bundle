@@ -13,26 +13,41 @@ $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
 ;
 
+/**
+ * @version v2.16.1
+ *
+ * @see https://cs.symfony.com/
+ * @see https://github.com/FriendsOfPHP/PHP-CS-Fixer/blob/2.16/src/RuleSet.php
+ * @see https://mlocati.github.io/php-cs-fixer-configurator/#version:2.16
+ */
 return PhpCsFixer\Config::create()
+    ->setRules(
+        [
+            // Enabled rules
+            '@Symfony' => true,
+            '@PhpCsFixer' => true,
+            '@PhpCsFixer:risky' => true,
+            '@DoctrineAnnotation' => true,
+            '@PHP71Migration:risky' => true,
+            '@PHP73Migration' => true,
+            '@PHPUnit75Migration:risky' => true,
+            'simplified_null_return' => true,
+            'header_comment' => [
+                'header' => $fileHeaderComment,
+                'separate' => 'both',
+            ],
+            'linebreak_after_opening_tag' => true,
+            'mb_str_functions' => true,
+            'no_php4_constructor' => true,
+            // Disabled rules
+            'declare_strict_types' => false,
+            'fopen_flags' => false,
+            'heredoc_to_nowdoc' => false,
+            'protected_to_private' => false,
+        ]
+    )
     ->setRiskyAllowed(true)
-    ->setRules([
-        '@Symfony' => true,
-        '@Symfony:risky' => true,
-        'array_syntax' => ['syntax' => 'short'],
-        'header_comment' => ['header' => $fileHeaderComment, 'separate' => 'both'],
-        'linebreak_after_opening_tag' => true,
-        'mb_str_functions' => true,
-        'no_php4_constructor' => true,
-        'no_unreachable_default_argument_value' => true,
-        'no_useless_else' => true,
-        'no_useless_return' => true,
-        'ordered_imports' => true,
-        'php_unit_strict' => true,
-        'phpdoc_order' => true,
-        'semicolon_after_instruction' => true,
-        'strict_comparison' => true,
-        'strict_param' => true,
-    ])
+    ->setIndent('    ')
+    ->setLineEnding("\n")
     ->setFinder($finder)
-    ->setUsingCache(true)
 ;

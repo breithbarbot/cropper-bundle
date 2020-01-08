@@ -12,6 +12,7 @@
 namespace App\Controller;
 
 // [...]
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,11 +26,7 @@ class UserController extends AbstractController
     /**
      * Edit user.
      *
-     * @Route("/edit", methods="GET|POST", options={"expose"=true}, name="app_user_edit")
-     *
-     * @param Request $request
-     *
-     * @return Response
+     * @Route("/edit", methods="GET|POST", options={"expose": true}, name="app_user_edit")
      */
     public function edit(Request $request): Response
     {
@@ -49,7 +46,7 @@ class UserController extends AbstractController
             $em->persist($entity);
             $em->flush();
             // [...]
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // [...]
         }
     }

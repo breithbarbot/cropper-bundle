@@ -13,15 +13,16 @@ namespace Breithbarbot\CropperBundle\DependencyInjection\Compiler;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 
 class FormPass implements CompilerPassInterface
 {
     /**
      * {@inheritdoc}
      *
-     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
+     * @throws InvalidArgumentException
      */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $template = '@BreithbarbotCropper/Form/fields.html.twig';
         $resources = $container->getParameter('twig.form.resources');

@@ -11,19 +11,15 @@
 
 namespace Breithbarbot\CropperBundle\Twig\Extension;
 
-class ParameterExtension extends \Twig_Extension
-{
-    /**
-     * @var
-     */
-    private $container;
+use Symfony\Component\DependencyInjection\Container;
+use Twig_Extension;
+use Twig_SimpleFunction;
 
-    /**
-     * ParameterExtension constructor.
-     *
-     * @param $container
-     */
-    public function __construct($container)
+class ParameterExtension extends Twig_Extension
+{
+    private Container $container;
+
+    public function __construct(Container $container)
     {
         $this->container = $container;
     }
@@ -34,7 +30,7 @@ class ParameterExtension extends \Twig_Extension
     public function getFunctions()
     {
         return [
-            new \Twig_SimpleFunction('breithbarbot_cropper_parameter', [$this, 'getParameter']),
+            new Twig_SimpleFunction('breithbarbot_cropper_parameter', [$this, 'getParameter']),
         ];
     }
 
