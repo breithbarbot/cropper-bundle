@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Cropper package.
+ * This file is part of the CropperBundle package.
  *
  * (c) Breith Barbot <b.breith@gmail.com>
  *
@@ -12,7 +12,8 @@
 namespace App\Controller;
 
 // [...]
-use Exception;
+use App\Entity\File;
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -64,7 +65,7 @@ class CropperController extends AbstractController
                         $message = $nameEntity.' saved.';
                         $return = true;
                         // [...]
-                    } catch (Exception $e) {
+                    } catch (\Exception $e) {
                         $message = 'An error occurred when updating the '.mb_strtolower($nameEntity).'...';
                         // [...]
                     }
@@ -127,7 +128,7 @@ class CropperController extends AbstractController
                     $status = 200;
                     $return = true;
                     // [...]
-                } catch (Exception $e) {
+                } catch (\Exception $e) {
                     $message = 'An error occurred when delete the '.mb_strtolower($nameEntity).'...';
                 }
             }

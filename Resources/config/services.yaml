@@ -1,0 +1,12 @@
+services:
+  breithbarbot.cropper.form.type.breithbarbot_cropper:
+    class: Breithbarbot\CropperBundle\Form\Type\BreithbarbotCropperType
+    tags:
+      - { name: form.type, alias: breithbarbot_cropper }
+    arguments: ['@service_container']
+
+  breithbarbot.cropper.twig.extension.parameter:
+    class: Breithbarbot\CropperBundle\Twig\Extension\ParameterExtension
+    tags:
+      - { name: twig.extension }
+    arguments: ['@service_container']

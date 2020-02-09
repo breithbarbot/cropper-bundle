@@ -1,4 +1,5 @@
-# Usage in Twig Instructions
+Usage in Twig instructions
+==========================
 
 <br>
 
@@ -14,5 +15,5 @@
 
 <br>
 
-#### Back to index
-[Back to documentation index](index.md)
+## Next ?
+- [Homepage documentation](index.md)

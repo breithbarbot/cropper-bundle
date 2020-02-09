@@ -1,88 +1,47 @@
-# Installation procedure
+Installation instructions
+=========================
 
-1. Download Cropper Bundle
-2. Enable the bundle
-3. Configure the bundle
+Make sure Composer is installed globally, as explained in the
+[installation chapter](https://getcomposer.org/doc/00-intro.md)
+of the Composer documentation.
 
-<br>
+Applications that use Symfony Flex
+----------------------------------
 
-### Step 1: Download Cropper Bundle
-Require the bundle with composer:
+Open a command console, enter your project directory and execute:
 
-```bash
-composer req breithbarbot/cropper
+```console
+$ composer require breithbarbot/cropper-bundle
 ```
 
-<br>
+Applications that don't use Symfony Flex
+----------------------------------------
 
-### Step 2: Enable the bundle
+### Step 1: Download the Bundle
 
-#### For user using Symfony Flex
+Open a command console, enter your project directory and execute the
+following command to download the latest stable version of this bundle:
+
+```console
+$ composer require breithbarbot/cropper-bundle
+```
+
+### Step 2: Enable the Bundle
+
+Then, enable the bundle by adding it to the list of registered bundles
+in the `config/bundles.php` file of your project:
 
 ```php
 // config/bundles.php
 
 return [
-    // [...]
+    // ...
     Breithbarbot\CropperBundle\BreithbarbotCropperBundle::class => ['all' => true],
-    // [...]
 ];
 ```
 
-#### For user not using Symfony Flex
-
-```php
-// app/AppKernel.php
-
-class AppKernel extends Kernel
-{
-    public function registerBundles()
-    {
-        return array(
-            // ...
-            new Breithbarbot\CropperBundle\BreithbarbotCropperBundle(),
-        );
-    }
-}
-```
-
 <br>
 
-### Step 3: Configure the bundle
-Example configure the bundle:
-
-```yaml
-# config/packages/breithbarbot_cropper.yaml
-breithbarbot_cropper:
-    mappings:
-        # An example of a custom mapping name
-        user_avatar:
-            routes:
-                # A custom route which will take care of saving the image
-                path_add: 'app_cropper_avatar_add'
-
-                # Your custom route that will delete the image + Show the delete button in the modal. (Optional parameter)
-                path_delete: 'app_cropper_avatar_delete'
-
-            # Definition of cropped image properties (width, height and ratio)
-            width:  400
-            height: 400
-            ratio:  1
-
-        # Another example...
-        note_image:
-            routes:
-                path_add: 'app_cropper_note_add'
-            width:  400
-            height: 225
-            ratio:  '16/9'
-```
-
-A example of use for the following 2 routes (`app_cropper_avatar_add` and `app_cropper_avatar_delete`): [CropperController.php](examples/Controller/CropperController.php)
-
-<br>
-
-#### Next ?
-[Go to usage Instructions](usage.md)
-
-[Back to documentation index](index.md)
+## Next ?
+- [Usage instructions](usage.md)
+- [Homepage documentation](index.md)

@@ -1,44 +1,54 @@
 language: php
-
-dist: trusty
-sudo: false
-
+os: linux
 cache:
   directories:
-  - $HOME/.composer/cache
-  - .phpunit
-  - vendor/
+    - $HOME/.composer/cache/files
+    - $HOME/symfony-bridge/.phpunit
 
 env:
   global:
-  - MIN_PHP=7.4
-  - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
+    - PHPUNIT_FLAGS="-v"
+    - SYMFONY_PHPUNIT_DIR="$HOME/symfony-bridge/.phpunit"
 
-matrix:
+jobs:
   fast_finish: true
   include:
-  - php: 7.4
-    env: deps=high
-  - php: 7.4.2
-    env: deps=low
+    # Minimum supported dependencies with the latest and oldest PHP version
+    - php: 7.4
+      env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest" SYMFONY_DEPRECATIONS_HELPER="max[self]=0"
+    - php: 7.4.2
+      env: COMPOSER_FLAGS="--prefer-stable --prefer-lowest" SYMFONY_DEPRECATIONS_HELPER="max[self]=0"
+
+      # Test the latest stable release
+    - php: 7.4.2
+    - php: 7.4
+      env: COVERAGE=true PHPUNIT_FLAGS="-v --coverage-text"
+
+      # Latest commit to master
+    - php: 7.4
+      env: STABILITY="dev"
+
+  allow_failures:
+    # Dev-master is allowed to fail.
+    - env: STABILITY="dev"
 
 before_install:
-# Install Composer and project dependencies.
-- curl -sS https://getcomposer.org/installer | php
+  - if [[ $COVERAGE != true ]]; then phpenv config-rm xdebug.ini || true; fi
+  - if ! [ -z "$STABILITY" ]; then composer config minimum-stability ${STABILITY}; fi;
+  - if ! [ -v "$DEPENDENCIES" ]; then composer require --no-update ${DEPENDENCIES}; fi;
 
 install:
-# Install Composer and project dependencies.
-- composer install --optimize-autoloader
+  - composer update ${COMPOSER_FLAGS} --prefer-dist --no-interaction
+  - ./vendor/bin/simple-phpunit install
 
 script:
-# this checks that the composer.json and composer.lock files are valid
-- composer validate --strict
+  - composer validate --strict --no-check-lock
+  # simple-phpunit is the PHPUnit wrapper provided by the PHPUnit Bridge component and
+  # it helps with testing legacy code and deprecations (composer require symfony/phpunit-bridge)
+#  - ./vendor/bin/simple-phpunit $PHPUNIT_FLAGS
 
-# run symfony tests
-- php vendor/bin/simple-phpunit
-
-# this checks that the source code follows the Symfony Code Syntax rules
-- ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no
+  # this checks that the source code follows the Symfony Code Syntax rules
+#  - ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no
 
 notifications:
   email:

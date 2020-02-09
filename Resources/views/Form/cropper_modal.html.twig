@@ -3,12 +3,12 @@
 
 {% trans_default_domain 'BreithbarbotCropperBundle' %}
 
-{% block cropper_stylesheets %}
+{% block breithbarbot_cropper_stylesheets %}
     <link href="{{ asset('bundles/breithbarbotcropper/plugins/cropper.js/cropper.min.css') }}" rel="stylesheet">
     <link href="{{ asset('bundles/breithbarbotcropper/css/main.min.css') }}" rel="stylesheet">
 {% endblock %}
 
-{% block cropper_modals %}
+{% block breithbarbot_cropper_modals %}
     <div class="modal fade" id="avatar-modal{{ identifier }}" role="dialog" aria-labelledby="avatar-modal{{ identifier }}-label" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -68,13 +68,13 @@
     </div>
 {% endblock %}
 
-{% block cropper_javascripts %}
-    <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous">\x3C/script>')</script>
+{% block breithbarbot_cropper_javascripts %}
+    <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"><\/script>')</script>
     <script src="{{ asset('bundles/breithbarbotcropper/plugins/cropper.js/cropper.min.js') }}"></script>
     <script src="{{ asset('bundles/breithbarbotcropper/plugins/dummy_image.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            var image;
+            var image = document.createElement('img');
             var input = document.querySelector('#avatar-modal{{ identifier }} [type=file]');
             var progress = $('.avatar-body .progress');
             var progressBar = $('.avatar-body .progress-bar');
@@ -95,7 +95,7 @@
                     input.value = '';
                     image.src = url;
 
-                    cropper.destroy();
+                    cropper ? cropper.destroy() : null;
                     cropper = null;
                     cropper = new Cropper(image, cropperOption);
 
@@ -194,7 +194,7 @@
                         }).fail(function (jqXHR) {
                             avatar.src = initialAvatarURL;
                             alert.show().addClass('alert-warning').html('{{ 'upload.error'|trans }}<br>'+jqXHR.responseJSON.message);
-                        }).complete(function () {
+                        }).always(function () {
                             progress.hide();
                         });
                     });

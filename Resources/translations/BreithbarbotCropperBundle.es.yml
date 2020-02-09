@@ -1,15 +1,15 @@
 deleteImage: Eliminar imagen?
 upload:
-    success: Imagen guardada con éxito
-    error: Se ha producido un error al guardar la imagen
+  success: Imagen guardada con éxito
+  error: Se ha producido un error al guardar la imagen
 delete:
-    success: Imagen borrada con éxito
-    error: Se ha producido un error al eliminar la imagen
+  success: Imagen borrada con éxito
+  error: Se ha producido un error al eliminar la imagen
 croppingTool: Herramienta de recorte
 form:
-    input: Seleccione una imagen
-    title: Título
+  input: Seleccione una imagen
+  title: Título
 preview: Vista previa de la imagen
 modal:
-    close: Cerrar
-    save: Guardar
+  close: Cerrar
+  save: Guardar

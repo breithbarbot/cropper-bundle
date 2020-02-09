@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Cropper package.
+ * This file is part of the CropperBundle package.
  *
  * (c) Breith Barbot <b.breith@gmail.com>
  *
@@ -27,9 +27,6 @@ class ParameterExtension extends AbstractExtension
         $this->container = $container;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getFunctions(): array
     {
         return [
@@ -37,18 +34,15 @@ class ParameterExtension extends AbstractExtension
         ];
     }
 
-    public function getParameter(string $name): string
+    public function getParameter(string $name): array
     {
         if (!empty($name)) {
             return $this->container->getParameter($name);
         }
 
-        return '';
+        return [];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName(): string
     {
         return 'breithbarbot_cropper_parameter';

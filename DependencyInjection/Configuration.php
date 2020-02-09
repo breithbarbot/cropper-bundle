@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Cropper package.
+ * This file is part of the CropperBundle package.
  *
  * (c) Breith Barbot <b.breith@gmail.com>
  *
@@ -11,7 +11,6 @@
 
 namespace Breithbarbot\CropperBundle\DependencyInjection;
 
-use RuntimeException;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 
@@ -20,9 +19,6 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
  */
 class Configuration implements ConfigurationInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder('breithbarbot_cropper');
@@ -33,8 +29,7 @@ class Configuration implements ConfigurationInterface
                     ->useAttributeAsKey('id')
                         ->prototype('array')
                             ->children()
-                                ->arrayNode('routes')
-                                    ->isRequired()
+                                ->arrayNode('routes')->isRequired()
                                     ->children()
                                         ->scalarNode('path_add')->isRequired()->cannotBeEmpty()->end()
                                         ->scalarNode('path_delete')->end()

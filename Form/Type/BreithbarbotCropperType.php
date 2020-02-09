@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Cropper package.
+ * This file is part of the CropperBundle package.
  *
  * (c) Breith Barbot <b.breith@gmail.com>
  *
@@ -17,7 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CropperType extends AbstractType
+class BreithbarbotCropperType extends AbstractType
 {
     private Container $container;
 
@@ -26,9 +26,6 @@ class CropperType extends AbstractType
         $this->container = $container;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         foreach ($options['additional_data'] as $key => $value) {
@@ -48,9 +45,6 @@ class CropperType extends AbstractType
         $builder->add('id', HiddenType::class, ['mapped' => false, 'attr' => ['data-cropper-image-id' => '']]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
@@ -60,9 +54,6 @@ class CropperType extends AbstractType
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix(): string
     {
         return 'breithbarbot_cropper_bundle_cropper_type';

@@ -1,52 +1,56 @@
 {
-    "name": "breithbarbot/cropper",
-    "description": "Simple cropping tool for symfony",
-    "version": "3.0.0",
-    "type": "symfony-bundle",
-    "homepage": "https://github.com/breithbarbot/cropper",
-    "readme": "README.md",
-    "license": "MIT",
-    "authors": [{"name": "Breith Barbot", "email": "b.breith@gmail.com", "homepage": "https://breithbarbot.name"}],
-    "support": {"docs": "https://github.com/breithbarbot/cropper/blob/master/Resources/doc/index.md"},
-    "require": {
-        "php": "^7.4",
-        "ext-xml": "*",
-        "symfony/config": "4.4.*",
-        "symfony/dependency-injection": "4.4.*",
-        "symfony/form": "4.4.*",
-        "symfony/http-kernel": "4.4.*",
-        "symfony/routing": "4.4.*",
-        "symfony/twig-bundle": "4.4.*"
-    },
-    "require-dev": {
-        "symfony/test-pack": "*"
-    },
-    "conflict": {
-        "symfony/symfony": "*"
-    },
-    "autoload": {
-        "psr-4": {
-            "Breithbarbot\\CropperBundle\\": ""
-        }
-    },
-    "autoload-dev": {
-        "psr-4": {
-            "Breithbarbot\\CropperBundle\\Tests\\": "tests/"
-        }
-    },
-    "config": {
-        "preferred-install": {
-            "*": "dist"
-        },
-        "sort-packages": true
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "3.0-dev"
-        },
-        "symfony": {
-            "allow-contrib": true,
-            "require": "4.4.*"
-        }
+  "name": "breithbarbot/cropper-bundle",
+  "type": "symfony-bundle",
+  "description": "Simple cropping tool for symfony",
+  "homepage": "https://github.com/breithbarbot/cropper-bundle",
+  "readme": "README.md",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Breith Barbot",
+      "email": "b.breith@gmail.com",
+      "homepage": "https://breithbarbot.name"
     }
+  ],
+  "require": {
+    "php": "^7.4",
+    "symfony/config": "^4.4|^5.0",
+    "symfony/dependency-injection": "^4.4|^5.0",
+    "symfony/form": "^4.4|^5.0",
+    "symfony/http-kernel": "^4.4|^5.0",
+    "symfony/routing": "^4.4|^5.0",
+    "symfony/twig-bundle": "^4.4|^5.0",
+    "symfony/translation": "^4.4|^5.0"
+  },
+  "require-dev": {
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "symfony/debug-pack": "*",
+    "symfony/maker-bundle": "^1.0",
+    "symfony/profiler-pack": "*",
+    "symfony/test-pack": "*"
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "3.0.x-dev"
+    }
+  },
+  "autoload": {
+    "psr-4": {
+      "Breithbarbot\\CropperBundle\\": ""
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Breithbarbot\\CropperBundle\\Tests\\": "Tests/"
+    }
+  },
+  "scripts": {
+    "php-cs-fixer": "php-cs-fixer fix -v"
+  },
+  "support": {
+    "docs": "https://github.com/breithbarbot/cropper/blob/master/Resources/doc/index.md"
+  }
 }

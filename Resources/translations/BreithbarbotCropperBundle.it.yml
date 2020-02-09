@@ -1,15 +1,15 @@
 deleteImage: Elimina immagine?
 upload:
-    success: Immagine registrata con successo
-    error: Si è verificato un errore durante il salvataggio dell'immagine
+  success: Immagine registrata con successo
+  error: Si è verificato un errore durante il salvataggio dell'immagine
 delete:
-    success: Immagine eliminata
-    error: Si è verificato un errore durante l'eliminazione dell'immagine
+  success: Immagine eliminata
+  error: Si è verificato un errore durante l'eliminazione dell'immagine
 croppingTool: Strumento di ritaglio
 form:
-    input: Seleziona un'immagine
-    title: Titolo
+  input: Seleziona un'immagine
+  title: Titolo
 preview: Anteprima immagine
 modal:
-    close: Chiudi
-    save: Salvare
+  close: Chiudi
+  save: Salvare

@@ -1,7 +1,7 @@
 <?php
 
 $fileHeaderComment = <<<COMMENT
-This file is part of the Cropper package.
+This file is part of the CropperBundle package.
 
 (c) Breith Barbot <b.breith@gmail.com>
 
@@ -11,6 +11,7 @@ COMMENT;
 
 $finder = PhpCsFixer\Finder::create()
     ->in(__DIR__)
+    ->notPath('DependencyInjection/Configuration.php')
 ;
 
 /**
