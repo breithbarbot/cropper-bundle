@@ -1,5 +1,5 @@
-Cropper
-=======
+CropperBundle
+=============
 
 > Simple cropping tool for Symfony
 
@@ -10,6 +10,7 @@ Bundle based on the javascript plugin [Cropper.js](https://github.com/fengyuanch
 [![Latest Stable Version](https://poser.pugx.org/breithbarbot/cropper-bundle/v/stable)](https://packagist.org/packages/breithbarbot/cropper-bundle)
 [![Total Downloads](https://poser.pugx.org/breithbarbot/cropper-bundle/downloads)](https://packagist.org/packages/breithbarbot/cropper-bundle)
 [![Latest Unstable Version](https://poser.pugx.org/breithbarbot/cropper-bundle/v/unstable)](https://packagist.org/packages/breithbarbot/cropper-bundle)
+[![License](https://poser.pugx.org/breithbarbot/cropper-bundle/license)](https://packagist.org/packages/breithbarbot/cropper-bundle)
 [![composer.lock](https://poser.pugx.org/breithbarbot/cropper-bundle/composerlock)](https://packagist.org/packages/breithbarbot/cropper-bundle)
 
 <br>
