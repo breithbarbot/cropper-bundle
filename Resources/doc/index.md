@@ -10,6 +10,7 @@ Here you will find information on installation procedure and usage instructions.
 
 ## Requirements
 - [PHP 7.4](https://www.php.net/) (Minimum version required)
+- [Symfony 4.4 (LTS) / Symfony 5.0](https://symfony.com/)
 - [jQuery](https://jquery.com/) (Optional)
 - [Bootstrap](https://getbootstrap.com/)
 
