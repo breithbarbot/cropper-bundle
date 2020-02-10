@@ -32,7 +32,6 @@
   },
   "suggest": {
     "sensio/framework-extra-bundle": "For use routes as annotations (The example files are based on annotations)",
-    "symfony/asset": "For manages URL generation and versioning medias (The example files are based on symfony/asset)",
     "symfony/orm-pack": "For update DB from migration files (The example files are based on migration)",
     "symfony/security-core": "It provides all the common security features (The example files are based on symfony/security-core)"
   },
