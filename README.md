@@ -3,6 +3,8 @@ CropperBundle
 
 > Simple cropping tool for Symfony
 
+<br>
+
 Bundle based on the javascript plugin [Cropper.js](https://github.com/fengyuanchen/cropperjs) adapted for use under Symfony
 
 [![Build Status](https://travis-ci.org/breithbarbot/cropper-bundle.svg?branch=master)](https://travis-ci.org/breithbarbot/cropper-bundle)
@@ -10,7 +12,6 @@ Bundle based on the javascript plugin [Cropper.js](https://github.com/fengyuanch
 [![Latest Stable Version](https://poser.pugx.org/breithbarbot/cropper-bundle/v/stable)](https://packagist.org/packages/breithbarbot/cropper-bundle)
 [![Total Downloads](https://poser.pugx.org/breithbarbot/cropper-bundle/downloads)](https://packagist.org/packages/breithbarbot/cropper-bundle)
 [![Latest Unstable Version](https://poser.pugx.org/breithbarbot/cropper-bundle/v/unstable)](https://packagist.org/packages/breithbarbot/cropper-bundle)
-[![License](https://poser.pugx.org/breithbarbot/cropper-bundle/license)](https://packagist.org/packages/breithbarbot/cropper-bundle)
 [![composer.lock](https://poser.pugx.org/breithbarbot/cropper-bundle/composerlock)](https://packagist.org/packages/breithbarbot/cropper-bundle)
 
 <br>
@@ -57,4 +58,4 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 
 ## License
 
-[![License](https://poser.pugx.org/breithbarbot/cropper-bundle/license)](https://github.com/breithbarbot/cropper-bundle/blob/master/LICENSE)
+[![License](https://poser.pugx.org/breithbarbot/cropper-bundle/license)](https://packagist.org/packages/breithbarbot/cropper-bundle)
