@@ -24,7 +24,7 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 
 ## Version
 
-3.0.0 - Compatibility with Symfony 5.0, libraries update, typing, documentation improvement, example files setup, bug fixes
+3.0.0 - Compatibility with Symfony 5.0, Update packages, PHP Typing, Documentation improvement, Example files setup, Bug fixes
 
 2.0.0 - Complete recasting of the code and simplification
 
