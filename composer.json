@@ -29,6 +29,9 @@
     "symfony/profiler-pack": "*",
     "symfony/test-pack": "*"
   },
+  "suggest": {
+    "sensio/framework-extra-bundle": "For use routes as annotations (The example files are based on annotations)"
+  },
   "config": {
     "sort-packages": true
   },
