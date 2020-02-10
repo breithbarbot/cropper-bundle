@@ -30,7 +30,8 @@
     "symfony/test-pack": "*"
   },
   "suggest": {
-    "sensio/framework-extra-bundle": "For use routes as annotations (The example files are based on annotations)"
+    "sensio/framework-extra-bundle": "For use routes as annotations (The example files are based on annotations)",
+    "symfony/security-core": "It provides all the common security features (The example files are based on symfony/security-core)"
   },
   "config": {
     "sort-packages": true
