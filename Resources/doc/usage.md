@@ -59,9 +59,12 @@ Example in a form builder:
 
 ```php
 <?php
+// src\Form\UserType.php
 
 // [...]
 use Breithbarbot\CropperBundle\Form\Type\BreithbarbotCropperType;
+use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
 
 class UserType extends AbstractType
 {
@@ -84,6 +87,8 @@ class UserType extends AbstractType
             // [...]
         ;
     }
+
+    // [...]
 }
 ```
 
