@@ -10,7 +10,7 @@ Bundle based on the javascript plugin [Cropper.js](https://github.com/fengyuanch
 [![Build Status](https://travis-ci.org/breithbarbot/cropper-bundle.svg?branch=master)](https://travis-ci.org/breithbarbot/cropper-bundle)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/c727fa2d04904f27b4954d96eee7d51e)](https://www.codacy.com/manual/breithbarbot/cropper-bundle)
 [![Latest Stable Version](https://poser.pugx.org/breithbarbot/cropper-bundle/v/stable)](https://packagist.org/packages/breithbarbot/cropper-bundle)
-[![Total Downloads](https://poser.pugx.org/breithbarbot/cropper-bundle/downloads)](https://packagist.org/packages/breithbarbot/cropper-bundle)
+[![Monthly Downloads](https://poser.pugx.org/breithbarbot/cropper-bundle/d/monthly)](https://packagist.org/packages/breithbarbot/cropper-bundle)
 [![Latest Unstable Version](https://poser.pugx.org/breithbarbot/cropper-bundle/v/unstable)](https://packagist.org/packages/breithbarbot/cropper-bundle)
 [![composer.lock](https://poser.pugx.org/breithbarbot/cropper-bundle/composerlock)](https://packagist.org/packages/breithbarbot/cropper-bundle)
 
@@ -18,13 +18,13 @@ Bundle based on the javascript plugin [Cropper.js](https://github.com/fengyuanch
 
 ## Documentation
 
-For the installation and procedure, see : [Resources/doc/index.md](Resources/doc/index.md)
+For the installation and procedure, see : [Documentation](Resources/doc/index.md)
 
 <br>
 
-## Version
+## Versions
 
-3.0.0 - Compatibility with Symfony 5.0, Update packages, PHP Typing, Documentation improvement, Example files setup, Bug fixes
+3.0.0 - Compatibility with Symfony 4.4 / 5.0, Documentation improvement, Example files setup, ...
 
 2.0.0 - Complete recasting of the code and simplification
 
@@ -36,14 +36,14 @@ For the installation and procedure, see : [Resources/doc/index.md](Resources/doc
 
 ## Releases
 
-[Go to all releases](https://github.com/breithbarbot/cropper/releases)
+[Go to all releases](https://github.com/breithbarbot/cropper-bundle/releases)
 
 <br>
 
 ## Coming soon...
 
 * Improve JS script (Fully ES6?)
-* Add tests
+* Add unit tests (Don't hesitate to create a PR/MR)
 * Add demonstration page
 
 <br>
