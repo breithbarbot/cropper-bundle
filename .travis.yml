@@ -48,3 +48,8 @@ script:
   - composer validate --strict --no-check-lock
   - vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no
   - vendor/bin/simple-phpunit --configuration phpunit.xml --coverage-text --colors=never
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
