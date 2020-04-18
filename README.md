@@ -33,9 +33,9 @@ For the installation and procedure, see : [Documentation](Resources/doc/index.md
 <br>
 
 ## Coming soon...
-* Improve JS script (ECMAScript 2020)
-* Add unit tests (Don't hesitate to create a PR/MR)
-* Add demonstration page
+[] Improve JS script (ECMAScript 2020)
+[] Add unit tests (Don't hesitate to create a PR/MR)
+[] Add demonstration page
 
 <br>
 
