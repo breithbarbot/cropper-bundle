@@ -1,6 +1,4 @@
-CropperBundle
-=============
-
+# CropperBundle
 > Simple cropping tool for Symfony
 
 <br>
@@ -17,45 +15,35 @@ Bundle based on the javascript plugin [Cropper.js](https://github.com/fengyuanch
 <br>
 
 ## Documentation
-
 For the installation and procedure, see : [Documentation](Resources/doc/index.md)
 
 <br>
 
 ## Versions
-
-3.0.0 - Compatibility with Symfony 4.4 / 5.0, Documentation improvement, Example files setup, ...
-
-2.0.0 - Complete recasting of the code and simplification
-
-1.1.0 - Update library, add translation, improve script, new field, ...
-
-1.0.0 - Start of the project ! 🎉🎊
+- 3.0.0 - Compatibility with Symfony 4.4 / 5.0, Documentation improvement, Example files setup, ...
+- 2.0.0 - Complete recasting of the code and simplification
+- 1.1.0 - Update library, add translation, improve script, new field, ...
+- 1.0.0 - Start of the project ! 🎉🎊
 
 <br>
 
 ## Releases
-
 [Go to all releases](https://github.com/breithbarbot/cropper-bundle/releases)
 
 <br>
 
 ## Coming soon...
-
-* Improve JS script (Fully ES6?)
+* Improve JS script (ECMAScript 2020)
 * Add unit tests (Don't hesitate to create a PR/MR)
 * Add demonstration page
 
 <br>
 
 ## External library used ❤️
-
 - [Cropper.js](https://github.com/fengyuanchen/cropperjs)
 - [Dummy Image](https://github.com/shaneriley/dummy_image)
-
 
 <br>
 
 ## License
-
 [![License](https://poser.pugx.org/breithbarbot/cropper-bundle/license)](https://packagist.org/packages/breithbarbot/cropper-bundle)
