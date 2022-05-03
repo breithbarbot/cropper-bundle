@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Cropper package.
+ * This file is part of the CropperBundle package.
  *
  * (c) Breith Barbot <b.breith@gmail.com>
  *
@@ -21,18 +21,13 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
  */
 class BreithbarbotCropperExtension extends Extension
 {
-    /**
-     * {@inheritdoc}
-     *
-     * @throws \Exception
-     */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.yml');
+        $loader->load('services.yaml');
 
         $container->setParameter('breithbarbot_cropper.mappings', $config['mappings']);
     }

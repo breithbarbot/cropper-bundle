@@ -1,15 +1,15 @@
 deleteImage: Delete image?
 upload:
-    success: Image saved successfully
-    error: An error occurred when saving the image
+  success: Image saved successfully
+  error: An error occurred when saving the image
 delete:
-    success: Image successfully deleted
-    error: An error occurred when deleting the image
+  success: Image successfully deleted
+  error: An error occurred when deleting the image
 croppingTool: Cropping tool
 form:
-    input: Select an image
-    title: Title
+  input: Select an image
+  title: Title
 preview: Image preview
 modal:
-    close: Close
-    save: Save
+  close: Close
+  save: Save

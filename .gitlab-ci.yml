@@ -1,40 +1,24 @@
-# This file is a template, and might need editing before it works on your project.
 # Select image from https://hub.docker.com/_/php/
-image: php:7.2
+image: php:7.4
 
-# This folder is cached between builds
-# http://docs.gitlab.com/ce/ci/yaml/README.html#cache
 cache:
-    paths:
+  paths:
     - vendor/
 
 before_script:
-# Update packages
-- apt-get update -yqq
-
-# Install dependencies
-- apt-get install git nodejs yarn libcurl4-gnutls-dev libicu-dev libmcrypt-dev libvpx-dev libjpeg-dev libpng-dev libxpm-dev zlib1g-dev libfreetype6-dev libxml2-dev libexpat1-dev libbz2-dev libgmp3-dev libldap2-dev unixodbc-dev libpq-dev libsqlite3-dev libaspell-dev libsnmp-dev libpcre3-dev libtidy-dev zip unzip gnupg2 -yqq
-
-# Install php extensions
-- docker-php-ext-install mbstring pdo_mysql curl json intl gd xml zip bz2 opcache
-
-# Install & enable Xdebug for code coverage reports
-- pecl install xdebug
-- docker-php-ext-enable xdebug
-
-# Install Composer and project dependencies.
-- curl -sS https://getcomposer.org/installer | php
-- php composer.phar install --optimize-autoloader
+  - apt-get update -yqq
+  - apt-get install -yqq git unzip libmcrypt-dev libpq-dev libcurl4-gnutls-dev libicu-dev libvpx-dev libjpeg-dev libpng-dev libxpm-dev zlib1g-dev libfreetype6-dev libxml2-dev libexpat1-dev libbz2-dev libgmp3-dev libldap2-dev unixodbc-dev libsqlite3-dev libaspell-dev libsnmp-dev libpcre3-dev libtidy-dev libzip-dev
+  # Install PHP extensions
+  - docker-php-ext-install curl json intl bz2 zip opcache
+  # Install and run Composer
+  - curl -sS https://getcomposer.org/installer | php
+  - php composer.phar install --prefer-dist --no-interaction
+  # Copy PHPUnit config
+  - cp phpunit.xml.dist phpunit.xml
 
 # Run our tests
-# If Xdebug was installed you can generate a coverage report and see code coverage metrics.
 test:
-    script:
-    # this checks that the composer.json and composer.lock files are valid
-    - php composer.phar validate --strict
-
-    # run symfony tests
-    - php vendor/bin/simple-phpunit
-
-    # this checks that the source code follows the Symfony Code Syntax rules
-    - ./vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no
+  script:
+    - php composer.phar validate --strict --no-check-lock
+    - vendor/bin/php-cs-fixer fix -v --dry-run --stop-on-violation --using-cache=no
+    - vendor/bin/simple-phpunit --configuration phpunit.xml --coverage-text --colors=never

@@ -1,4 +1,5 @@
-# Multiple Usage Instructions
+Multiple usage instructions
+===========================
 
 1. Add form field in a form builder
 2. Add modal
@@ -16,27 +17,29 @@ Example in a form builder:
 <?php
 
 // [...]
-use Breithbarbot\CropperBundle\Form\Type\CropperType;
+use Breithbarbot\CropperBundle\Form\Type\BreithbarbotCropperType;
 
 class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        // [...]
+        // Mapped = "true" if avatar exist
         $edit = (null !== $builder->getData()->getAvatar());
-        $builder->add('avatar', CropperType::class, [
-            'required' => false,
-            'mapped' => $edit,
-            'mapping' => 'user_avatar',
-            'additional_data' => [
-                'entity_id' => $builder->getData()->getId(),
-                // [...]
-            ],
-            'identifier' => 'crop3',
-            'label' => false
+        $builder
+            // [...]
+            ->add('avatar', BreithbarbotCropperType::class, [
+                'required' => false,
+                'mapped' => $edit,
+                'mapping' => 'user_avatar', // From: config/packages/cropper.yaml
+                'additional_data' => [
+                    'entity_id' => $builder->getData()->getId(), // Get current ID
+                    // [...]
+                ],
+                'identifier' => 'crop3', // Identifier: crop3
+                'label' => false
             ])
+            // [...]
         ;
-        // [...]
     }
 }
 ```
@@ -58,5 +61,7 @@ Include modal with params:
 
 <br>
 
-#### Back to index
-[Back to documentation index](index.md)
+## Next ?
+- [Usage Instructions (Step 5)](usage.md#step-5-add-form-field)
+- [Usage in Twig instructions](usage_twig.md)
+- [Homepage documentation](index.md)

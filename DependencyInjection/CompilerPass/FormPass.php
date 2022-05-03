@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Cropper package.
+ * This file is part of the CropperBundle package.
  *
  * (c) Breith Barbot <b.breith@gmail.com>
  *
@@ -9,19 +9,14 @@
  * file that was distributed with this source code.
  */
 
-namespace Breithbarbot\CropperBundle\DependencyInjection\Compiler;
+namespace Breithbarbot\CropperBundle\DependencyInjection\CompilerPass;
 
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 
 class FormPass implements CompilerPassInterface
 {
-    /**
-     * {@inheritdoc}
-     *
-     * @throws \Symfony\Component\DependencyInjection\Exception\InvalidArgumentException
-     */
-    public function process(ContainerBuilder $container)
+    public function process(ContainerBuilder $container): void
     {
         $template = '@BreithbarbotCropper/Form/fields.html.twig';
         $resources = $container->getParameter('twig.form.resources');

@@ -10,7 +10,7 @@
         </div>
         {{ form_widget(form.id) }}
 
-        <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=" crossorigin="anonymous">\x3C/script>')</script>
+        <script>window.jQuery || document.write('<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"><\/script>')</script>
         <script>
             $(document).ready(function () {
                 {% if form.vars.value is null %}
@@ -19,7 +19,7 @@
                 {% endif %}
 
                 // Initializing cropper modal
-                $('.avatar-view').on('click', function (e) {
+                $('.avatar-view').on('click', function () {
                     // Variable
                     $avatarModal = $('#avatar-modal{{ identifier }}');
 
@@ -27,7 +27,7 @@
                     $elem = $(this);
 
                     // Set current image
-                    $avatarModal.find('.avatar-wrapper').empty().html('<img src="' + $elem.find('img').attr('src') + '" />');
+                    $avatarModal.find('.avatar-wrapper').empty().html('<img alt="" src="' + $elem.find('img').attr('src') + '" />');
 
                     // Set additional data
                     $avatarModal.find('.additional-data').html('');

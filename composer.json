@@ -1,9 +1,9 @@
 {
-  "name": "breithbarbot/cropper",
+  "name": "breithbarbot/cropper-bundle",
   "type": "symfony-bundle",
-  "description": "Simple cropping tool for symfony",
-  "keywords": ["crop", "cropping", "image", "avatar", "upload", "symfony-bundle", "form-types", "symfony", "php"],
-  "homepage": "https://github.com/breithbarbot/cropper",
+  "description": "Simple cropping tool for Symfony",
+  "homepage": "https://github.com/breithbarbot/cropper-bundle",
+  "readme": "README.md",
   "license": "MIT",
   "authors": [
     {
@@ -13,41 +13,44 @@
     }
   ],
   "require": {
-    "php": ">=7.1.3",
-    "symfony/config": "^4.4",
-    "symfony/dependency-injection": "^4.4",
-    "symfony/form": "^4.4",
-    "symfony/http-kernel": "^4.4",
-    "symfony/routing": "^4.4"
+    "php": "^7.4",
+    "symfony/asset": "^4.4 || ^5.0",
+    "symfony/config": "^4.4 || ^5.0",
+    "symfony/dependency-injection": "^4.4 || ^5.0",
+    "symfony/form": "^4.4 || ^5.0",
+    "symfony/http-kernel": "^4.4 || ^5.0",
+    "symfony/routing": "^4.4 || ^5.0",
+    "symfony/translation": "^4.4 || ^5.0",
+    "symfony/twig-bundle": "^4.4 || ^5.0"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.13",
-    "roave/security-advisories": "dev-master",
-    "symfony/phpunit-bridge": "^3.4||^4.1"
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "symfony/debug-pack": "*",
+    "symfony/maker-bundle": "^1.0",
+    "symfony/profiler-pack": "*",
+    "symfony/test-pack": "*"
+  },
+  "suggest": {
+    "sensio/framework-extra-bundle": "For use routes as annotations (The example files are based on annotations)",
+    "symfony/security-core": "It provides all the common security features (The example files are based on symfony/security-core)"
   },
   "config": {
-    "preferred-install": {
-      "*": "dist"
-    },
     "sort-packages": true
   },
   "autoload": {
-    "psr-4": { "Breithbarbot\\CropperBundle\\": "" }
+    "psr-4": {
+      "Breithbarbot\\CropperBundle\\": ""
+    }
   },
   "autoload-dev": {
     "psr-4": {
-      "Breithbarbot\\CropperBundle\\": "Tests/"
+      "Breithbarbot\\CropperBundle\\Tests\\": "Tests/"
     }
   },
-  "conflict": {
-    "symfony/symfony": "*"
-  },
-  "extra": {
-    "branch-alias": {
-      "dev-master": "2.0.x-dev"
-    }
+  "scripts": {
+    "php-cs-fixer": "php-cs-fixer fix -v"
   },
   "support": {
-    "docs": "https://github.com/breithbarbot/cropper/blob/master/Resources/doc/index.md"
+    "docs": "https://github.com/breithbarbot/cropper-bundle/blob/master/Resources/doc/index.md"
   }
 }

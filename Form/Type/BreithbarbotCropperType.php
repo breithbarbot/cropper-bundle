@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Cropper package.
+ * This file is part of the CropperBundle package.
  *
  * (c) Breith Barbot <b.breith@gmail.com>
  *
@@ -11,29 +11,22 @@
 
 namespace Breithbarbot\CropperBundle\Form\Type;
 
+use Symfony\Component\DependencyInjection\Container;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class CropperType extends AbstractType
+class BreithbarbotCropperType extends AbstractType
 {
-    private $container;
+    private Container $container;
 
-    /**
-     * CropperType constructor.
-     *
-     * @param $container
-     */
-    public function __construct($container)
+    public function __construct(Container $container)
     {
         $this->container = $container;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         foreach ($options['additional_data'] as $key => $value) {
             $builder->add($key, HiddenType::class, ['mapped' => false, 'attr' => [$key => $value]]);
@@ -52,10 +45,7 @@ class CropperType extends AbstractType
         $builder->add('id', HiddenType::class, ['mapped' => false, 'attr' => ['data-cropper-image-id' => '']]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'mapping' => null,
@@ -64,10 +54,7 @@ class CropperType extends AbstractType
         ]);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'breithbarbot_cropper_bundle_cropper_type';
     }
