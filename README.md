@@ -1,7 +1,10 @@
 CropperBundle
 =============
-
 > Simple cropping tool for Symfony
+
+<br>
+
+⚠️ breithbarbot/cropper-bundle is **abandoned** and no longer maintained. I suggests using the [symfony/ux-cropperjs](https://github.com/symfony/ux-cropperjs) package instead.
 
 <br>
 
